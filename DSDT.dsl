@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Fri Mar 13 00:35:35 2015
+ * Disassembly of DSDT.aml, Fri Mar 13 01:01:05 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
  *     Length           0x00009B15 (39701)
  *     Revision         0x02
- *     Checksum         0xB2
+ *     Checksum         0x70
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -2053,7 +2053,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 }
             }
 
-            Device (MCH)
+            Device (MCEH)
             {
                 Name (_HID, EisaId ("PNP0C01") /* System Board */)  // _HID: Hardware ID
                 Name (_UID, 0x0A)  // _UID: Unique ID
@@ -2082,15 +2082,15 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 })
                 Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
                 {
-                    CreateDWordField (MCHR, \_SB.PCI0.MCH._Y00._BAS, PCIB)  // _BAS: Base Address
-                    CreateDWordField (MCHR, \_SB.PCI0.MCH._Y00._LEN, PCIL)  // _LEN: Length
+                    CreateDWordField (MCHR, \_SB.PCI0.MCEH._Y00._BAS, PCIB)  // _BAS: Base Address
+                    CreateDWordField (MCHR, \_SB.PCI0.MCEH._Y00._LEN, PCIL)  // _LEN: Length
                     PCIB = PEBS /* \PEBS */
                     PCIL = PEBL /* \PEBL */
-                    CreateDWordField (MCHR, \_SB.PCI0.MCH._Y01._BAS, VTCB)  // _BAS: Base Address
-                    CreateDWordField (MCHR, \_SB.PCI0.MCH._Y01._LEN, VTCL)  // _LEN: Length
+                    CreateDWordField (MCHR, \_SB.PCI0.MCEH._Y01._BAS, VTCB)  // _BAS: Base Address
+                    CreateDWordField (MCHR, \_SB.PCI0.MCEH._Y01._LEN, VTCL)  // _LEN: Length
                     VTCB = VTDS /* \VTDS */
                     VTCL = VTDL /* \VTDL */
-                    Return (MCHR) /* \_SB_.PCI0.MCH_.MCHR */
+                    Return (MCHR) /* \_SB_.PCI0.MCEH.MCHR */
                 }
             }
 
@@ -2375,7 +2375,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     })
                 }
 
-                Device (DMAD)
+                Device (DMAC)
                 {
                     Name (_HID, EisaId ("PNP0200") /* PC-class DMA Controller */)  // _HID: Hardware ID
                     Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
@@ -2463,7 +2463,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     })
                 }
 
-                Device (COPR)
+                Device (MATH)
                 {
                     Name (_HID, EisaId ("PNP0C04") /* x87-compatible Floating Point Processing Unit */)  // _HID: Hardware ID
                     Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
@@ -2772,7 +2772,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 Name (GSUE, Zero)
                 Name (GSUT, Zero)
                 Name (GSCR, Zero)
-                Device (CHN0)
+                Device (PRT0)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_GTM, 0, NotSerialized)  // _GTM: Get Timing Mode
@@ -2903,7 +2903,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     }
                 }
 
-                Device (CHN1)
+                Device (PRT1)
                 {
                     Name (_ADR, One)  // _ADR: Address
                     Method (_GTM, 0, NotSerialized)  // _GTM: Get Timing Mode
@@ -3506,7 +3506,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 Name (GSUE, Zero)
                 Name (GSUT, Zero)
                 Name (GSCR, Zero)
-                Device (CHN0)
+                Device (PRT0)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_GTM, 0, NotSerialized)  // _GTM: Get Timing Mode
@@ -3637,7 +3637,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     }
                 }
 
-                Device (CHN1)
+                Device (PRT1)
                 {
                     Name (_ADR, One)  // _ADR: Address
                     Method (_GTM, 0, NotSerialized)  // _GTM: Get Timing Mode
@@ -6014,7 +6014,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         }
     }
 
-    Device (OMSC)
+    Device (LDRC)
     {
         Name (_HID, EisaId ("PNP0C02") /* PNP Motherboard Resources */)  // _HID: Hardware ID
         Name (_UID, 0x0E11)  // _UID: Unique ID
@@ -8458,27 +8458,27 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         If ((Local0 & 0x02))
         {
             Local1 = GPUF /* \GPUF */
-            Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-            _T_0 = Local1
-            If ((_T_0 == One))
+            Name (T_0, Zero)
+            T_0 = Local1
+            If ((T_0 == One))
             {
                 Notify (\_SB.PCI0.P0P1.PEGP, 0x80) // Status Change
             }
             Else
             {
-                If ((_T_0 == 0x02))
+                If ((T_0 == 0x02))
                 {
                     Notify (\_SB.PCI0.P0P2.PEGP, 0x80) // Status Change
                 }
                 Else
                 {
-                    If ((_T_0 == 0x03))
+                    If ((T_0 == 0x03))
                     {
                         SGTG ()
                     }
                     Else
                     {
-                        If ((_T_0 == 0x04))
+                        If ((T_0 == 0x04))
                         {
                             \_SB.PCI0.GFX0.GHDS (Zero)
                         }
@@ -8517,27 +8517,27 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             If ((Local0 & 0x0400))
             {
                 Local1 = GPUF /* \GPUF */
-                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                _T_0 = Local1
-                If ((_T_0 == One))
+                Name (T_0, Zero)
+                T_0 = Local1
+                If ((T_0 == One))
                 {
                     Notify (\_SB.PCI0.P0P1.PEGP.LCD, 0x86) // Device-Specific
                 }
                 Else
                 {
-                    If ((_T_0 == 0x02))
+                    If ((T_0 == 0x02))
                     {
                         Notify (\_SB.PCI0.P0P2.PEGP.LCD, 0x86) // Device-Specific
                     }
                     Else
                     {
-                        If ((_T_0 == 0x03))
+                        If ((T_0 == 0x03))
                         {
                             SGBU ()
                         }
                         Else
                         {
-                            If ((_T_0 == 0x04))
+                            If ((T_0 == 0x04))
                             {
                                 If ((_REV != 0x03))
                                 {
@@ -8558,27 +8558,27 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             If ((Local0 & 0x0200))
             {
                 Local1 = GPUF /* \GPUF */
-                Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
-                _T_1 = Local1
-                If ((_T_1 == One))
+                Name (T_1, Zero)
+                T_1 = Local1
+                If ((T_1 == One))
                 {
                     Notify (\_SB.PCI0.P0P1.PEGP.LCD, 0x87) // Device-Specific
                 }
                 Else
                 {
-                    If ((_T_1 == 0x02))
+                    If ((T_1 == 0x02))
                     {
                         Notify (\_SB.PCI0.P0P2.PEGP.LCD, 0x87) // Device-Specific
                     }
                     Else
                     {
-                        If ((_T_1 == 0x03))
+                        If ((T_1 == 0x03))
                         {
                             SGBD ()
                         }
                         Else
                         {
-                            If ((_T_1 == 0x04))
+                            If ((T_1 == 0x04))
                             {
                                 If ((_REV != 0x03))
                                 {
