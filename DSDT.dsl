@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Thu Mar 12 20:32:14 2015
+ * Disassembly of DSDT.aml, Thu Mar 12 21:12:29 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x0000989E (39070)
+ *     Length           0x0000983C (38972)
  *     Revision         0x02
- *     Checksum         0x3E
+ *     Checksum         0xA8
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -2355,7 +2355,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     }
                 }
 
-                Device (PIC)
+                Device (IPIC)
                 {
                     Name (_HID, EisaId ("PNP0000") /* 8259-compatible Programmable Interrupt Controller */)  // _HID: Hardware ID
                     Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
@@ -2372,8 +2372,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             0x00,               // Alignment
                             0x02,               // Length
                             )
-                        IRQNoFlags ()
-                            {2}
                     })
                 }
 
@@ -2423,7 +2421,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     })
                 }
 
-                Device (TMR)
+                Device (TIMR)
                 {
                     Name (_HID, EisaId ("PNP0100") /* PC-class System Timer */)  // _HID: Hardware ID
                     Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
@@ -2434,12 +2432,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             0x00,               // Alignment
                             0x04,               // Length
                             )
-                        IRQNoFlags ()
-                            {0}
                     })
                 }
 
-                Device (RTC0)
+                Device (RTC)
                 {
                     Name (_HID, EisaId ("PNP0B00") /* AT Real-Time Clock */)  // _HID: Hardware ID
                     Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
@@ -2450,8 +2446,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             0x00,               // Alignment
                             0x02,               // Length
                             )
-                        IRQNoFlags ()
-                            {8}
                     })
                 }
 
@@ -5733,40 +5727,16 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             Device (HPET)
             {
                 Name (_HID, EisaId ("PNP0103") /* HPET System Timer */)  // _HID: Hardware ID
-                Name (CRS, ResourceTemplate ()
+                Name (_STA, 0x0F)  // _STA: Status
+                Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
                 {
+                    IRQNoFlags ()
+                        {2,8,11}
                     Memory32Fixed (ReadWrite,
                         0xFED00000,         // Address Base
                         0x00000400,         // Address Length
-                        _Y08)
+                        )
                 })
-                OperationRegion (HCNT, SystemMemory, HPTC, 0x04)
-                Field (HCNT, DWordAcc, NoLock, Preserve)
-                {
-                    HPTS,   2, 
-                        ,   5, 
-                    HPTE,   1
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (HPTE)
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    CreateDWordField (CRS, \_SB.PCI0.HPET._Y08._BAS, HTBS)  // _BAS: Base Address
-                    Local0 = (HPTS * 0x1000)
-                    HTBS = (Local0 + 0xFED00000)
-                    Return (CRS) /* \_SB_.PCI0.HPET.CRS_ */
-                }
             }
         }
     }
@@ -5821,21 +5791,21 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     0x00000000,         // Range Maximum
                     0x00000000,         // Translation Offset
                     0x00000000,         // Length
-                    ,, _Y09, AddressRangeMemory, TypeStatic)
+                    ,, _Y08, AddressRangeMemory, TypeStatic)
                 DWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
                     0x00000000,         // Granularity
                     0x00000000,         // Range Minimum
                     0x00000000,         // Range Maximum
                     0x00000000,         // Translation Offset
                     0x00000000,         // Length
-                    ,, _Y0A, AddressRangeMemory, TypeStatic)
+                    ,, _Y09, AddressRangeMemory, TypeStatic)
             })
-            CreateDWordField (CRS, \_SB.PCI0._Y09._MIN, MIN5)  // _MIN: Minimum Base Address
-            CreateDWordField (CRS, \_SB.PCI0._Y09._MAX, MAX5)  // _MAX: Maximum Base Address
-            CreateDWordField (CRS, \_SB.PCI0._Y09._LEN, LEN5)  // _LEN: Length
-            CreateDWordField (CRS, \_SB.PCI0._Y0A._MIN, MIN6)  // _MIN: Minimum Base Address
-            CreateDWordField (CRS, \_SB.PCI0._Y0A._MAX, MAX6)  // _MAX: Maximum Base Address
-            CreateDWordField (CRS, \_SB.PCI0._Y0A._LEN, LEN6)  // _LEN: Length
+            CreateDWordField (CRS, \_SB.PCI0._Y08._MIN, MIN5)  // _MIN: Minimum Base Address
+            CreateDWordField (CRS, \_SB.PCI0._Y08._MAX, MAX5)  // _MAX: Maximum Base Address
+            CreateDWordField (CRS, \_SB.PCI0._Y08._LEN, LEN5)  // _LEN: Length
+            CreateDWordField (CRS, \_SB.PCI0._Y09._MIN, MIN6)  // _MIN: Minimum Base Address
+            CreateDWordField (CRS, \_SB.PCI0._Y09._MAX, MAX6)  // _MAX: Maximum Base Address
+            CreateDWordField (CRS, \_SB.PCI0._Y09._LEN, LEN6)  // _LEN: Length
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
                 Local0 = MG1L /* \MG1L */
