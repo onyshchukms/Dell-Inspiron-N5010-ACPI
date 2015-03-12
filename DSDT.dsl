@@ -8848,6 +8848,8 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             SX44 (SX23, Local0)
             Return (SX23) /* \SX45.SX23 */
         }
+        
+        Return (Zero)
     }
 
     Method (SX12, 0, NotSerialized)
@@ -8931,7 +8933,9 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         Zero, 
                         Zero
                     })
-                    Name (_PLD, ToPLD (
+                    Name (_PLD, Package ()
+                    {
+                        ToPLD (
                         PLD_Revision       = 0x0,
                         PLD_IgnoreColor    = 0x0,
                         PLD_Red            = 0x0,
@@ -8959,7 +8963,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         PLD_Order          = 0x0,
                         PLD_VerticalOffset = 0x0,
                         PLD_HorizontalOffset = 0x0)
-)  // _PLD: Physical Location of Device
+                    })  // _PLD: Physical Location of Device
                     Device (CH00)
                     {
                         Name (_ADR, One)  // _ADR: Address
@@ -8980,7 +8984,9 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             Zero, 
                             Zero
                         })
-                        Name (_PLD, ToPLD (
+                        Name (_PLD, Package ()
+                        {
+                            ToPLD (
                             PLD_Revision       = 0x0,
                             PLD_IgnoreColor    = 0x0,
                             PLD_Red            = 0x0,
@@ -9008,7 +9014,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             PLD_Order          = 0x0,
                             PLD_VerticalOffset = 0x0,
                             PLD_HorizontalOffset = 0x0)
-)  // _PLD: Physical Location of Device
+                        })  // _PLD: Physical Location of Device
                     }
 
                     Device (CH11)
@@ -9021,7 +9027,9 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             Zero, 
                             Zero
                         })
-                        Name (_PLD, ToPLD (
+                        Name (_PLD, Package ()
+                        {
+                            ToPLD (
                             PLD_Revision       = 0x0,
                             PLD_IgnoreColor    = 0x0,
                             PLD_Red            = 0x0,
@@ -9049,7 +9057,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             PLD_Order          = 0x0,
                             PLD_VerticalOffset = 0x0,
                             PLD_HorizontalOffset = 0x0)
-)  // _PLD: Physical Location of Device
+                        })  // _PLD: Physical Location of Device
                     }
 
                     Device (CH20)
@@ -9067,7 +9075,9 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             Zero, 
                             Zero
                         })
-                        Name (_PLD, ToPLD (
+                        Name (_PLD, Package ()
+                        {
+                            ToPLD (
                             PLD_Revision       = 0x0,
                             PLD_IgnoreColor    = 0x0,
                             PLD_Red            = 0x0,
@@ -9095,7 +9105,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             PLD_Order          = 0x0,
                             PLD_VerticalOffset = 0x0,
                             PLD_HorizontalOffset = 0x0)
-)  // _PLD: Physical Location of Device
+                        })  // _PLD: Physical Location of Device
                     }
                 }
             }
@@ -9152,7 +9162,9 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         Zero, 
                         Zero
                     })
-                    Name (_PLD, ToPLD (
+                    Name (_PLD, Package ()
+                    {
+                        ToPLD (
                         PLD_Revision       = 0x0,
                         PLD_IgnoreColor    = 0x0,
                         PLD_Red            = 0x0,
@@ -9180,7 +9192,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         PLD_Order          = 0x0,
                         PLD_VerticalOffset = 0x0,
                         PLD_HorizontalOffset = 0x0)
-)  // _PLD: Physical Location of Device
+                    })  // _PLD: Physical Location of Device
                     Device (CH00)
                     {
                         Name (_ADR, One)  // _ADR: Address
@@ -9216,7 +9228,9 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             Zero, 
                             Zero
                         })
-                        Name (_PLD, ToPLD (
+                        Name (_PLD, Package ()
+                        {
+                            ToPLD (
                             PLD_Revision       = 0x0,
                             PLD_IgnoreColor    = 0x0,
                             PLD_Red            = 0x0,
@@ -9244,7 +9258,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             PLD_Order          = 0x0,
                             PLD_VerticalOffset = 0x0,
                             PLD_HorizontalOffset = 0x0)
-)  // _PLD: Physical Location of Device
+                        })  // _PLD: Physical Location of Device
                     }
 
                     Device (CH30)
@@ -9507,7 +9521,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         Device (AMW0)
         {
             Mutex (WMIX, 0x01)
-            Name (_HID, "pnp0c14")  // _HID: Hardware ID
+            Name (_HID, "PNP0C14")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Method (STBY, 3, NotSerialized)
             {
