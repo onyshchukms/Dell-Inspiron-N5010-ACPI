@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Thu Mar 12 21:12:29 2015
+ * Disassembly of DSDT.aml, Thu Mar 12 21:47:37 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x0000983C (38972)
+ *     Length           0x0000986C (39020)
  *     Revision         0x02
- *     Checksum         0xA8
+ *     Checksum         0x96
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -165,7 +165,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 OSVR = 0x03
             }
 
-            If (_OSI ("Windows 2001"))
+            If ((_OSI ("Darwin") || _OSI ("Windows 2001")))
             {
                 OSVR = 0x04
             }
@@ -6550,7 +6550,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         Local1 = 0x03E8
                     }
 
-                    If (_OSI ("Windows 2001"))
+                    If ((_OSI ("Darwin") || _OSI ("Windows 2001")))
                     {
                         Local1 = 0x07D1
                     }
@@ -10029,6 +10029,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
     Name (WLG, "Windows 2006")
     Name (WIN7, "Windows 2009")
     Name (LNX, "Linux")
+    Name (OSX, "Darwin")
     Method (GETZ, 2, NotSerialized)
     {
         CreateByteField (Arg0, Arg1, TCHR)
@@ -10065,7 +10066,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             MIS3 = One
             If (CondRefOf (_OSI, Local0))
             {
-                If (_OSI (WXP))
+                If ((_OSI (OSX) || _OSI (WXP)))
                 {
                     MIS3 = 0x10
                 }
