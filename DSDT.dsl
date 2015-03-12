@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Thu Mar 12 22:12:02 2015
+ * Disassembly of DSDT.aml, Thu Mar 12 22:20:37 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x00009934 (39220)
+ *     Length           0x000099E0 (39392)
  *     Revision         0x02
- *     Checksum         0x02
+ *     Checksum         0x0F
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -4911,6 +4911,33 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             {
                 Notify (\_SB.PCI0.GBE, 0x02) // Device Wake
                 Notify (\_SB.PWRB, 0x02) // Device Wake
+            }
+        }
+
+        Device (PNLF)
+        {
+            Name (_HID, EisaId ("APP0002"))  // _HID: Hardware ID
+            Name (_CID, "backlight")  // _CID: Compatible ID
+            Name (_UID, 0x0A)  // _UID: Unique ID
+            Name (_STA, 0x0B)  // _STA: Status
+            Method (_BCL, 0, NotSerialized)  // _BCL: Brightness Control Levels
+            {
+                Return (^^PCI0.P0P1.PEGP.LCD._BCL ())
+            }
+
+            Method (_BCM, 1, NotSerialized)  // _BCM: Brightness Control Method
+            {
+                ^^PCI0.P0P1.PEGP.LCD._BCM (Arg0)
+            }
+
+            Method (_BQC, 0, NotSerialized)  // _BQC: Brightness Query Current
+            {
+                Return (^^PCI0.P0P1.PEGP.LCD._BQC ())
+            }
+
+            Method (_DOS, 1, NotSerialized)  // _DOS: Disable Output Switching
+            {
+                ^^PCI0.P0P1.PEGP._DOS (Arg0)
             }
         }
 
