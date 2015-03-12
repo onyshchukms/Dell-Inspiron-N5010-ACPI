@@ -5,18 +5,18 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Thu Mar 12 19:09:36 2015
+ * Disassembly of DSDT.aml, Thu Mar 12 20:32:14 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x00009900 (39168)
+ *     Length           0x0000989E (39070)
  *     Revision         0x02
- *     Checksum         0xBF
+ *     Checksum         0x3E
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
  *     Compiler ID      "INTL"
- *     Compiler Version 0x20051117 (537202967)
+ *     Compiler Version 0x20150204 (538247684)
  */
 DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
 {
@@ -339,11 +339,11 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
     Name (SS2, Zero)
     Name (SS3, One)
     Name (SS4, One)
-    Name (IOST, 0x0000)
+    Name (IOST, Zero)
     Name (TOPM, 0xBFFFFFFF)
     Name (ROMS, 0xFFE00000)
-    Name (MG1B, 0x00000000)
-    Name (MG1L, 0x00000000)
+    Name (MG1B, Zero)
+    Name (MG1L, Zero)
     Name (MG2B, 0xC0000000)
     Name (MG2L, 0x40000000)
     OperationRegion (GNVS, SystemMemory, 0xBF622E18, 0x0172)
@@ -5311,7 +5311,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         Name (NCST, 0x02)
         Name (NPSS, 0x0A)
         Name (HNDL, 0x80000000)
-        Name (TNLP, 0x0004)
+        Name (TNLP, 0x04)
         Name (CINT, Zero)
         Name (PDCV, 0xFFFFFFFF)
         Name (APSS, Package (0x0A)
@@ -5319,101 +5319,101 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             Package (0x06)
             {
                 0x09DF, 
-                0x00000C35, 
-                0x000A, 
-                0x000A, 
-                0x0013, 
-                0x0013
+                0x0C35, 
+                0x0A, 
+                0x0A, 
+                0x13, 
+                0x13
             }, 
 
             Package (0x06)
             {
                 0x095A, 
-                0x00000A41, 
-                0x000A, 
-                0x000A, 
-                0x0012, 
-                0x0012
+                0x0A41, 
+                0x0A, 
+                0x0A, 
+                0x12, 
+                0x12
             }, 
 
             Package (0x06)
             {
                 0x08D5, 
-                0x0000084D, 
-                0x000A, 
-                0x000A, 
-                0x0011, 
-                0x0011
+                0x084D, 
+                0x0A, 
+                0x0A, 
+                0x11, 
+                0x11
             }, 
 
             Package (0x06)
             {
                 0x0850, 
-                0x000006D6, 
-                0x000A, 
-                0x000A, 
-                0x0010, 
-                0x0010
+                0x06D6, 
+                0x0A, 
+                0x0A, 
+                0x10, 
+                0x10
             }, 
 
             Package (0x06)
             {
                 0x07CB, 
-                0x000005DC, 
-                0x000A, 
-                0x000A, 
-                0x000F, 
-                0x000F
+                0x05DC, 
+                0x0A, 
+                0x0A, 
+                0x0F, 
+                0x0F
             }, 
 
             Package (0x06)
             {
                 0x0746, 
-                0x000004E2, 
-                0x000A, 
-                0x000A, 
-                0x000E, 
-                0x000E
+                0x04E2, 
+                0x0A, 
+                0x0A, 
+                0x0E, 
+                0x0E
             }, 
 
             Package (0x06)
             {
                 0x06C1, 
-                0x000003E8, 
-                0x000A, 
-                0x000A, 
-                0x000D, 
-                0x000D
+                0x03E8, 
+                0x0A, 
+                0x0A, 
+                0x0D, 
+                0x0D
             }, 
 
             Package (0x06)
             {
                 0x063C, 
-                0x000002EE, 
-                0x000A, 
-                0x000A, 
-                0x000C, 
-                0x000C
+                0x02EE, 
+                0x0A, 
+                0x0A, 
+                0x0C, 
+                0x0C
             }, 
 
             Package (0x06)
             {
                 0x05B7, 
-                0x000001F4, 
-                0x000A, 
-                0x000A, 
-                0x000B, 
-                0x000B
+                0x01F4, 
+                0x0A, 
+                0x0A, 
+                0x0B, 
+                0x0B
             }, 
 
             Package (0x06)
             {
                 0x03A3, 
-                0x0000007D, 
-                0x000A, 
-                0x000A, 
-                0x0007, 
-                0x0007
+                0x7D, 
+                0x0A, 
+                0x0A, 
+                0x07, 
+                0x07
             }
         })
         Name (PTCI, Package (0x02)
@@ -5537,7 +5537,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         ,)
                 }, 
 
-                0x01, 
+                One, 
                 0x03, 
                 0x03E8
             }
@@ -5556,7 +5556,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         ,)
                 }, 
 
-                0x01, 
+                One, 
                 0x03, 
                 0x03E8
             }, 
@@ -5609,7 +5609,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         ,)
                 }, 
 
-                0x01, 
+                One, 
                 0x03, 
                 0x03E8
             }, 
@@ -6320,7 +6320,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 {
                     PARM &= 0xEFFF0000
                     PARM &= (DerefOf (Index (DBTB, IBTT)) << 0x10)
-                    PARM |= IBTT /* \_SB_.PCI0.GFX0.PARM */
+                    PARM |= IBTT /* \IBTT */
                     GESF = Zero
                     Return (SUCC) /* \_SB_.PCI0.GFX0.SUCC */
                 }
@@ -6353,7 +6353,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     PARM |= 0x1800
                     PARM |= (IDMS << 0x11)
                     PARM |= (DerefOf (Index (DerefOf (Index (CDCT, HVCO)), CDVL)) << 
-                        0x15) /* \_SB_.PCI0.GFX0.PARM */
+                        0x15)
                     GESF = One
                     Return (SUCC) /* \_SB_.PCI0.GFX0.SUCC */
                 }
@@ -6896,10 +6896,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     0xFFFFFFFF, 
                     0xFFFFFFFF
                 })
-                Index (TMP4, Zero) = (0x00010000 | DID1)
-                Index (TMP4, One) = (0x00010000 | DID2)
-                Index (TMP4, 0x02) = (0x00010000 | DID3)
-                Index (TMP4, 0x03) = (0x00010000 | DID4)
+                Index (TMP4, Zero) = (0x00010000 | DID1) /* \DID1 */
+                Index (TMP4, One) = (0x00010000 | DID2) /* \DID2 */
+                Index (TMP4, 0x02) = (0x00010000 | DID3) /* \DID3 */
+                Index (TMP4, 0x03) = (0x00010000 | DID4) /* \DID4 */
                 Return (TMP4) /* \_SB_.PCI0.GFX0._DOD.TMP4 */
             }
 
@@ -6919,11 +6919,11 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         0xFFFFFFFF, 
                         0xFFFFFFFF
                     })
-                    Index (TMP5, Zero) = (0x00010000 | DID1)
-                    Index (TMP5, One) = (0x00010000 | DID2)
-                    Index (TMP5, 0x02) = (0x00010000 | DID3)
-                    Index (TMP5, 0x03) = (0x00010000 | DID4)
-                    Index (TMP5, 0x04) = (0x00010000 | DID5)
+                    Index (TMP5, Zero) = (0x00010000 | DID1) /* \DID1 */
+                    Index (TMP5, One) = (0x00010000 | DID2) /* \DID2 */
+                    Index (TMP5, 0x02) = (0x00010000 | DID3) /* \DID3 */
+                    Index (TMP5, 0x03) = (0x00010000 | DID4) /* \DID4 */
+                    Index (TMP5, 0x04) = (0x00010000 | DID5) /* \DID5 */
                     Return (TMP5) /* \_SB_.PCI0.GFX0._DOD.TMP5 */
                 }
             }
@@ -8848,7 +8848,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             SX44 (SX23, Local0)
             Return (SX23) /* \SX45.SX23 */
         }
-        
+
         Return (Zero)
     }
 
@@ -8933,37 +8933,38 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         Zero, 
                         Zero
                     })
-                    Name (_PLD, Package ()
+                    Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
                     {
                         ToPLD (
-                        PLD_Revision       = 0x0,
-                        PLD_IgnoreColor    = 0x0,
-                        PLD_Red            = 0x0,
-                        PLD_Green          = 0x0,
-                        PLD_Blue           = 0x81,
-                        PLD_Width          = 0x0,
-                        PLD_Height         = 0x0,
-                        PLD_UserVisible    = 0x0,
-                        PLD_Dock           = 0x0,
-                        PLD_Lid            = 0x0,
-                        PLD_Panel          = "TOP",
-                        PLD_VerticalPosition = "UPPER",
-                        PLD_HorizontalPosition = "LEFT",
-                        PLD_Shape          = "ROUND",
-                        PLD_GroupOrientation = 0x0,
-                        PLD_GroupToken     = 0x0,
-                        PLD_GroupPosition  = 0x60,
-                        PLD_Bay            = 0x0,
-                        PLD_Ejectable      = 0x0,
-                        PLD_EjectRequired  = 0x0,
-                        PLD_CabinetNumber  = 0x0,
-                        PLD_CardCageNumber = 0x0,
-                        PLD_Reference      = 0x0,
-                        PLD_Rotation       = 0x0,
-                        PLD_Order          = 0x0,
-                        PLD_VerticalOffset = 0x0,
-                        PLD_HorizontalOffset = 0x0)
-                    })  // _PLD: Physical Location of Device
+                            PLD_Revision       = 0x0,
+                            PLD_IgnoreColor    = 0x0,
+                            PLD_Red            = 0x0,
+                            PLD_Green          = 0x0,
+                            PLD_Blue           = 0x81,
+                            PLD_Width          = 0x0,
+                            PLD_Height         = 0x0,
+                            PLD_UserVisible    = 0x0,
+                            PLD_Dock           = 0x0,
+                            PLD_Lid            = 0x0,
+                            PLD_Panel          = "TOP",
+                            PLD_VerticalPosition = "UPPER",
+                            PLD_HorizontalPosition = "LEFT",
+                            PLD_Shape          = "ROUND",
+                            PLD_GroupOrientation = 0x0,
+                            PLD_GroupToken     = 0x0,
+                            PLD_GroupPosition  = 0x60,
+                            PLD_Bay            = 0x0,
+                            PLD_Ejectable      = 0x0,
+                            PLD_EjectRequired  = 0x0,
+                            PLD_CabinetNumber  = 0x0,
+                            PLD_CardCageNumber = 0x0,
+                            PLD_Reference      = 0x0,
+                            PLD_Rotation       = 0x0,
+                            PLD_Order          = 0x0,
+                            PLD_VerticalOffset = 0x0,
+                            PLD_HorizontalOffset = 0x0)
+
+                    })
                     Device (CH00)
                     {
                         Name (_ADR, One)  // _ADR: Address
@@ -8984,37 +8985,38 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             Zero, 
                             Zero
                         })
-                        Name (_PLD, Package ()
+                        Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
                         {
                             ToPLD (
-                            PLD_Revision       = 0x0,
-                            PLD_IgnoreColor    = 0x0,
-                            PLD_Red            = 0x0,
-                            PLD_Green          = 0x0,
-                            PLD_Blue           = 0x81,
-                            PLD_Width          = 0x0,
-                            PLD_Height         = 0x0,
-                            PLD_UserVisible    = 0x0,
-                            PLD_Dock           = 0x0,
-                            PLD_Lid            = 0x0,
-                            PLD_Panel          = "TOP",
-                            PLD_VerticalPosition = "UPPER",
-                            PLD_HorizontalPosition = "LEFT",
-                            PLD_Shape          = "ROUND",
-                            PLD_GroupOrientation = 0x0,
-                            PLD_GroupToken     = 0x0,
-                            PLD_GroupPosition  = 0x60,
-                            PLD_Bay            = 0x0,
-                            PLD_Ejectable      = 0x0,
-                            PLD_EjectRequired  = 0x0,
-                            PLD_CabinetNumber  = 0x0,
-                            PLD_CardCageNumber = 0x0,
-                            PLD_Reference      = 0x0,
-                            PLD_Rotation       = 0x0,
-                            PLD_Order          = 0x0,
-                            PLD_VerticalOffset = 0x0,
-                            PLD_HorizontalOffset = 0x0)
-                        })  // _PLD: Physical Location of Device
+                                PLD_Revision       = 0x0,
+                                PLD_IgnoreColor    = 0x0,
+                                PLD_Red            = 0x0,
+                                PLD_Green          = 0x0,
+                                PLD_Blue           = 0x81,
+                                PLD_Width          = 0x0,
+                                PLD_Height         = 0x0,
+                                PLD_UserVisible    = 0x0,
+                                PLD_Dock           = 0x0,
+                                PLD_Lid            = 0x0,
+                                PLD_Panel          = "TOP",
+                                PLD_VerticalPosition = "UPPER",
+                                PLD_HorizontalPosition = "LEFT",
+                                PLD_Shape          = "ROUND",
+                                PLD_GroupOrientation = 0x0,
+                                PLD_GroupToken     = 0x0,
+                                PLD_GroupPosition  = 0x60,
+                                PLD_Bay            = 0x0,
+                                PLD_Ejectable      = 0x0,
+                                PLD_EjectRequired  = 0x0,
+                                PLD_CabinetNumber  = 0x0,
+                                PLD_CardCageNumber = 0x0,
+                                PLD_Reference      = 0x0,
+                                PLD_Rotation       = 0x0,
+                                PLD_Order          = 0x0,
+                                PLD_VerticalOffset = 0x0,
+                                PLD_HorizontalOffset = 0x0)
+
+                        })
                     }
 
                     Device (CH11)
@@ -9027,37 +9029,38 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             Zero, 
                             Zero
                         })
-                        Name (_PLD, Package ()
+                        Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
                         {
                             ToPLD (
-                            PLD_Revision       = 0x0,
-                            PLD_IgnoreColor    = 0x0,
-                            PLD_Red            = 0x0,
-                            PLD_Green          = 0x0,
-                            PLD_Blue           = 0x81,
-                            PLD_Width          = 0x0,
-                            PLD_Height         = 0x0,
-                            PLD_UserVisible    = 0x0,
-                            PLD_Dock           = 0x0,
-                            PLD_Lid            = 0x0,
-                            PLD_Panel          = "TOP",
-                            PLD_VerticalPosition = "UPPER",
-                            PLD_HorizontalPosition = "LEFT",
-                            PLD_Shape          = "ROUND",
-                            PLD_GroupOrientation = 0x0,
-                            PLD_GroupToken     = 0x0,
-                            PLD_GroupPosition  = 0x60,
-                            PLD_Bay            = 0x0,
-                            PLD_Ejectable      = 0x0,
-                            PLD_EjectRequired  = 0x0,
-                            PLD_CabinetNumber  = 0x0,
-                            PLD_CardCageNumber = 0x0,
-                            PLD_Reference      = 0x0,
-                            PLD_Rotation       = 0x0,
-                            PLD_Order          = 0x0,
-                            PLD_VerticalOffset = 0x0,
-                            PLD_HorizontalOffset = 0x0)
-                        })  // _PLD: Physical Location of Device
+                                PLD_Revision       = 0x0,
+                                PLD_IgnoreColor    = 0x0,
+                                PLD_Red            = 0x0,
+                                PLD_Green          = 0x0,
+                                PLD_Blue           = 0x81,
+                                PLD_Width          = 0x0,
+                                PLD_Height         = 0x0,
+                                PLD_UserVisible    = 0x0,
+                                PLD_Dock           = 0x0,
+                                PLD_Lid            = 0x0,
+                                PLD_Panel          = "TOP",
+                                PLD_VerticalPosition = "UPPER",
+                                PLD_HorizontalPosition = "LEFT",
+                                PLD_Shape          = "ROUND",
+                                PLD_GroupOrientation = 0x0,
+                                PLD_GroupToken     = 0x0,
+                                PLD_GroupPosition  = 0x60,
+                                PLD_Bay            = 0x0,
+                                PLD_Ejectable      = 0x0,
+                                PLD_EjectRequired  = 0x0,
+                                PLD_CabinetNumber  = 0x0,
+                                PLD_CardCageNumber = 0x0,
+                                PLD_Reference      = 0x0,
+                                PLD_Rotation       = 0x0,
+                                PLD_Order          = 0x0,
+                                PLD_VerticalOffset = 0x0,
+                                PLD_HorizontalOffset = 0x0)
+
+                        })
                     }
 
                     Device (CH20)
@@ -9075,37 +9078,38 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             Zero, 
                             Zero
                         })
-                        Name (_PLD, Package ()
+                        Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
                         {
                             ToPLD (
-                            PLD_Revision       = 0x0,
-                            PLD_IgnoreColor    = 0x0,
-                            PLD_Red            = 0x0,
-                            PLD_Green          = 0x0,
-                            PLD_Blue           = 0x81,
-                            PLD_Width          = 0x0,
-                            PLD_Height         = 0x0,
-                            PLD_UserVisible    = 0x0,
-                            PLD_Dock           = 0x0,
-                            PLD_Lid            = 0x0,
-                            PLD_Panel          = "TOP",
-                            PLD_VerticalPosition = "UPPER",
-                            PLD_HorizontalPosition = "LEFT",
-                            PLD_Shape          = "ROUND",
-                            PLD_GroupOrientation = 0x0,
-                            PLD_GroupToken     = 0x0,
-                            PLD_GroupPosition  = 0x60,
-                            PLD_Bay            = 0x0,
-                            PLD_Ejectable      = 0x0,
-                            PLD_EjectRequired  = 0x0,
-                            PLD_CabinetNumber  = 0x0,
-                            PLD_CardCageNumber = 0x0,
-                            PLD_Reference      = 0x0,
-                            PLD_Rotation       = 0x0,
-                            PLD_Order          = 0x0,
-                            PLD_VerticalOffset = 0x0,
-                            PLD_HorizontalOffset = 0x0)
-                        })  // _PLD: Physical Location of Device
+                                PLD_Revision       = 0x0,
+                                PLD_IgnoreColor    = 0x0,
+                                PLD_Red            = 0x0,
+                                PLD_Green          = 0x0,
+                                PLD_Blue           = 0x81,
+                                PLD_Width          = 0x0,
+                                PLD_Height         = 0x0,
+                                PLD_UserVisible    = 0x0,
+                                PLD_Dock           = 0x0,
+                                PLD_Lid            = 0x0,
+                                PLD_Panel          = "TOP",
+                                PLD_VerticalPosition = "UPPER",
+                                PLD_HorizontalPosition = "LEFT",
+                                PLD_Shape          = "ROUND",
+                                PLD_GroupOrientation = 0x0,
+                                PLD_GroupToken     = 0x0,
+                                PLD_GroupPosition  = 0x60,
+                                PLD_Bay            = 0x0,
+                                PLD_Ejectable      = 0x0,
+                                PLD_EjectRequired  = 0x0,
+                                PLD_CabinetNumber  = 0x0,
+                                PLD_CardCageNumber = 0x0,
+                                PLD_Reference      = 0x0,
+                                PLD_Rotation       = 0x0,
+                                PLD_Order          = 0x0,
+                                PLD_VerticalOffset = 0x0,
+                                PLD_HorizontalOffset = 0x0)
+
+                        })
                     }
                 }
             }
@@ -9162,37 +9166,38 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         Zero, 
                         Zero
                     })
-                    Name (_PLD, Package ()
+                    Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
                     {
                         ToPLD (
-                        PLD_Revision       = 0x0,
-                        PLD_IgnoreColor    = 0x0,
-                        PLD_Red            = 0x0,
-                        PLD_Green          = 0x0,
-                        PLD_Blue           = 0x81,
-                        PLD_Width          = 0x0,
-                        PLD_Height         = 0x0,
-                        PLD_UserVisible    = 0x0,
-                        PLD_Dock           = 0x0,
-                        PLD_Lid            = 0x0,
-                        PLD_Panel          = "TOP",
-                        PLD_VerticalPosition = "UPPER",
-                        PLD_HorizontalPosition = "LEFT",
-                        PLD_Shape          = "ROUND",
-                        PLD_GroupOrientation = 0x0,
-                        PLD_GroupToken     = 0x0,
-                        PLD_GroupPosition  = 0x60,
-                        PLD_Bay            = 0x0,
-                        PLD_Ejectable      = 0x0,
-                        PLD_EjectRequired  = 0x0,
-                        PLD_CabinetNumber  = 0x0,
-                        PLD_CardCageNumber = 0x0,
-                        PLD_Reference      = 0x0,
-                        PLD_Rotation       = 0x0,
-                        PLD_Order          = 0x0,
-                        PLD_VerticalOffset = 0x0,
-                        PLD_HorizontalOffset = 0x0)
-                    })  // _PLD: Physical Location of Device
+                            PLD_Revision       = 0x0,
+                            PLD_IgnoreColor    = 0x0,
+                            PLD_Red            = 0x0,
+                            PLD_Green          = 0x0,
+                            PLD_Blue           = 0x81,
+                            PLD_Width          = 0x0,
+                            PLD_Height         = 0x0,
+                            PLD_UserVisible    = 0x0,
+                            PLD_Dock           = 0x0,
+                            PLD_Lid            = 0x0,
+                            PLD_Panel          = "TOP",
+                            PLD_VerticalPosition = "UPPER",
+                            PLD_HorizontalPosition = "LEFT",
+                            PLD_Shape          = "ROUND",
+                            PLD_GroupOrientation = 0x0,
+                            PLD_GroupToken     = 0x0,
+                            PLD_GroupPosition  = 0x60,
+                            PLD_Bay            = 0x0,
+                            PLD_Ejectable      = 0x0,
+                            PLD_EjectRequired  = 0x0,
+                            PLD_CabinetNumber  = 0x0,
+                            PLD_CardCageNumber = 0x0,
+                            PLD_Reference      = 0x0,
+                            PLD_Rotation       = 0x0,
+                            PLD_Order          = 0x0,
+                            PLD_VerticalOffset = 0x0,
+                            PLD_HorizontalOffset = 0x0)
+
+                    })
                     Device (CH00)
                     {
                         Name (_ADR, One)  // _ADR: Address
@@ -9228,37 +9233,38 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             Zero, 
                             Zero
                         })
-                        Name (_PLD, Package ()
+                        Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
                         {
                             ToPLD (
-                            PLD_Revision       = 0x0,
-                            PLD_IgnoreColor    = 0x0,
-                            PLD_Red            = 0x0,
-                            PLD_Green          = 0x0,
-                            PLD_Blue           = 0x81,
-                            PLD_Width          = 0x0,
-                            PLD_Height         = 0x0,
-                            PLD_UserVisible    = 0x0,
-                            PLD_Dock           = 0x0,
-                            PLD_Lid            = 0x0,
-                            PLD_Panel          = "TOP",
-                            PLD_VerticalPosition = "UPPER",
-                            PLD_HorizontalPosition = "LEFT",
-                            PLD_Shape          = "ROUND",
-                            PLD_GroupOrientation = 0x0,
-                            PLD_GroupToken     = 0x0,
-                            PLD_GroupPosition  = 0x60,
-                            PLD_Bay            = 0x0,
-                            PLD_Ejectable      = 0x0,
-                            PLD_EjectRequired  = 0x0,
-                            PLD_CabinetNumber  = 0x0,
-                            PLD_CardCageNumber = 0x0,
-                            PLD_Reference      = 0x0,
-                            PLD_Rotation       = 0x0,
-                            PLD_Order          = 0x0,
-                            PLD_VerticalOffset = 0x0,
-                            PLD_HorizontalOffset = 0x0)
-                        })  // _PLD: Physical Location of Device
+                                PLD_Revision       = 0x0,
+                                PLD_IgnoreColor    = 0x0,
+                                PLD_Red            = 0x0,
+                                PLD_Green          = 0x0,
+                                PLD_Blue           = 0x81,
+                                PLD_Width          = 0x0,
+                                PLD_Height         = 0x0,
+                                PLD_UserVisible    = 0x0,
+                                PLD_Dock           = 0x0,
+                                PLD_Lid            = 0x0,
+                                PLD_Panel          = "TOP",
+                                PLD_VerticalPosition = "UPPER",
+                                PLD_HorizontalPosition = "LEFT",
+                                PLD_Shape          = "ROUND",
+                                PLD_GroupOrientation = 0x0,
+                                PLD_GroupToken     = 0x0,
+                                PLD_GroupPosition  = 0x60,
+                                PLD_Bay            = 0x0,
+                                PLD_Ejectable      = 0x0,
+                                PLD_EjectRequired  = 0x0,
+                                PLD_CabinetNumber  = 0x0,
+                                PLD_CardCageNumber = 0x0,
+                                PLD_Reference      = 0x0,
+                                PLD_Rotation       = 0x0,
+                                PLD_Order          = 0x0,
+                                PLD_VerticalOffset = 0x0,
+                                PLD_HorizontalOffset = 0x0)
+
+                        })
                     }
 
                     Device (CH30)
@@ -9521,7 +9527,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         Device (AMW0)
         {
             Mutex (WMIX, 0x01)
-            Name (_HID, "PNP0C14")  // _HID: Hardware ID
+            Name (_HID, "PNP0C14" /* Windows Management Instrumentation Device */)  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
             Method (STBY, 3, NotSerialized)
             {
