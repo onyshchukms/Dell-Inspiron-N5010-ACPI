@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Thu Mar 12 21:47:37 2015
+ * Disassembly of DSDT.aml, Thu Mar 12 22:12:02 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x0000986C (39020)
+ *     Length           0x00009934 (39220)
  *     Revision         0x02
- *     Checksum         0x96
+ *     Checksum         0x02
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -7887,6 +7887,41 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         Device (PXSX)
         {
             Name (_ADR, Zero)  // _ADR: Address
+            Name (_SUN, 0x001C0001)  // _SUN: Slot User Number
+            Name (_PRW, Package (0x02)  // _PRW: Power Resources for Wake
+            {
+                0x09, 
+                0x04
+            })
+            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            {
+                If ((Arg2 == Zero))
+                {
+                    Return (Buffer (One)
+                    {
+                         0x03                                             /* . */
+                    })
+                }
+
+                Return (Package (0x0C)
+                {
+                    "built-in", 
+                    Buffer (One)
+                    {
+                         0x00                                             /* . */
+                    }, 
+
+                    "device_type", 
+                    "AirPort", 
+                    "model", 
+                    "Broadcom BCM43225 802.11 a/b/g/n Wireless Network Controller", 
+                    "name", 
+                    "AirPort Extreme", 
+                    "compatible", 
+                    "pci14e4,43a0"
+                })
+            }
+
             Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
             {
                 Local0 = Zero
