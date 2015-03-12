@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Fri Mar 13 00:08:50 2015
+ * Disassembly of DSDT.aml, Fri Mar 13 00:23:07 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x00009A1C (39452)
+ *     Length           0x00009A75 (39541)
  *     Revision         0x02
- *     Checksum         0xDE
+ *     Checksum         0x5A
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -4099,7 +4099,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 }
             }
 
-            Device (SMB)
+            Device (SBUS)
             {
                 Name (_ADR, 0x001F0003)  // _ADR: Address
                 OperationRegion (SMBP, PCI_Config, 0x40, 0xC0)
@@ -4167,7 +4167,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     If (COMP ())
                     {
                         HSTS |= 0xFF
-                        Return (DAT0) /* \_SB_.PCI0.SMB_.DAT0 */
+                        Return (DAT0) /* \_SB_.PCI0.SBUS.DAT0 */
                     }
 
                     Return (0xFFFF)
@@ -4214,7 +4214,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     If (COMP ())
                     {
                         HSTS |= 0xFF
-                        Return (DAT0) /* \_SB_.PCI0.SMB_.DAT0 */
+                        Return (DAT0) /* \_SB_.PCI0.SBUS.DAT0 */
                     }
 
                     Return (0xFFFF)
@@ -4337,7 +4337,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                         Return (Zero)
                     }
 
-                    Index (TBUF, Zero) = DAT0 /* \_SB_.PCI0.SMB_.DAT0 */
+                    Index (TBUF, Zero) = DAT0 /* \_SB_.PCI0.SBUS.DAT0 */
                     HSTS = 0x80
                     Local1 = One
                     While ((Local1 < DerefOf (Index (TBUF, Zero))))
@@ -4355,7 +4355,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                             Return (Zero)
                         }
 
-                        Index (TBUF, Local1) = HBDR /* \_SB_.PCI0.SMB_.HBDR */
+                        Index (TBUF, Local1) = HBDR /* \_SB_.PCI0.SBUS.HBDR */
                         HSTS = 0x80
                         Local1++
                     }
@@ -4363,7 +4363,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     If (COMP ())
                     {
                         HSTS |= 0xFF
-                        Return (TBUF) /* \_SB_.PCI0.SMB_.SBLR.TBUF */
+                        Return (TBUF) /* \_SB_.PCI0.SBUS.SBLR.TBUF */
                     }
 
                     Return (Zero)
@@ -4443,12 +4443,39 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 {
                     Method (_L07, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
                     {
-                        \_SB.PCI0.SMB.HSTS = 0x20
+                        \_SB.PCI0.SBUS.HSTS = 0x20
                     }
 
                     Method (_L1B, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
                     {
-                        \_SB.PCI0.SMB.HSTS = 0x20
+                        \_SB.PCI0.SBUS.HSTS = 0x20
+                    }
+                }
+
+                Device (BUS0)
+                {
+                    Name (_CID, "smbus")  // _CID: Compatible ID
+                    Name (_ADR, Zero)  // _ADR: Address
+                    Device (DVL0)
+                    {
+                        Name (_ADR, 0x57)  // _ADR: Address
+                        Name (_CID, "diagsvault")  // _CID: Compatible ID
+                        Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                        {
+                            If ((Arg2 == Zero))
+                            {
+                                Return (Buffer (One)
+                                {
+                                     0x03                                             /* . */
+                                })
+                            }
+
+                            Return (Package (0x02)
+                            {
+                                "address", 
+                                0x57
+                            })
+                        }
                     }
                 }
             }
