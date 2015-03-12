@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Fri Mar 13 01:01:05 2015
+ * Disassembly of DSDT.aml, Fri Mar 13 01:32:53 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
  *     Length           0x00009B15 (39701)
  *     Revision         0x02
- *     Checksum         0x70
+ *     Checksum         0x66
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -6122,6 +6122,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
     {
         Device (GFX0)
         {
+            Name (_ADR, 0x00020000)  // _ADR: Address
             Scope (^^PCI0)
             {
                 OperationRegion (MCHP, PCI_Config, 0x40, 0xC0)
@@ -6856,7 +6857,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
 
     Scope (_SB.PCI0.GFX0)
     {
-        Name (_ADR, 0x00020000)  // _ADR: Address
         Method (_DOS, 1, NotSerialized)  // _DOS: Disable Output Switching
         {
             DSEN = (Arg0 & 0x07)
