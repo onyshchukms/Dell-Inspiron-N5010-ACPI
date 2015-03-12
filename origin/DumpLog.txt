@@ -1,0 +1,56 @@
+9:994  5:624  Found BIOS RSDP at F0410
+9:994  0:000  Saving ACPI tables from RSDP F0410 to EFI\CLOVER\OEM\Inspiron N5010\ACPI\origin ...
+9:994  0:000   F0410: 'RSD PTR ', Rev: 3 (Acpi 2.0 or newer), Len: 36 -> RSDP.aml
+10:113  0:119    (Xsdt: BF5EF080, Rsdt: BF5EF040)
+10:113  0:000    BF5EF080: 'XSDT', 'WN09   ', Rev: 1, Len: 84 -> XSDT.aml
+10:133  0:020    BF5EF040: 'RSDT', 'WN09    ', Rev: 1, Len: 60 -> RSDT.aml
+10:160  0:026    Tables in Xsdt: 6
+10:160  0:000    0. BF5F8A68: 'FACP', 'WN09   ', Rev: 4, Len: 244 -> FACP.aml
+10:191  0:030        (Dsdt: BF5EF168, Facs: BF62CF40, XDsdt: BF5EF168, XFacs: BF62CF80)
+10:191  0:000        BF5EF168: 'DSDT', 'WN09   ', Rev: 2, Len: 39168 -> DSDT.aml
+10:256  0:065        * BF621C18: 'SSDT', 'IST', Rev: 1, Len: 932  53 53 44 54 A4 03 00 00 01 EA 41 4D 49 00 00 00  -> SSDT-0x.aml
+10:277  0:021        BF62CF80: 'FACS', Ver: 1, Len: 64 -> FACS.aml
+10:305  0:027    1. BF5F8B60: 'APIC', 'WN09    ', Rev: 1, Len: 114 -> APIC.aml
+10:333  0:028    2. BF5F8BD8: 'SSDT', 'PROC', Rev: 1, Len: 334 -> SSDT-1.aml
+10:362  0:029    3. BF5F8D28: 'MCFG', 'WN09', Rev: 1, Len: 60 -> MCFG.aml
+10:389  0:027    4. BF5F8D68: 'HPET', 'WN09', Rev: 1, Len: 56 -> HPET.aml
+10:424  0:034    5. BF5F8DA0: 'OSFR', 'M08    ', Rev: 1, Len: 140 -> OSFR.aml
+10:453  0:029    Tables in Rsdt: 6
+10:453  0:000    0. BF5EF0E0: 'FACP', 'WN09   ', Rev: 2, Len: 132 -> RSDT-FACP.aml
+10:480  0:026        (Dsdt: BF5EF168, Facs: BF62CF40)
+10:480  0:000        BF5EF168: 'DSDT', 'WN09   ', Rev: 2, Len: 39168
+10:480  0:000        * BF621C18: 'SSDT', 'IST', Rev: 1, Len: 932  53 53 44 54 A4 03 00 00 01 EA 41 4D 49 00 00 00 
+10:480  0:000        BF62CF40: 'FACS', Ver: 0, Len: 64 -> RSDT-FACS.aml
+10:509  0:028    1. BF5F8B60: 'APIC', 'WN09    ', Rev: 1, Len: 114
+10:509  0:000    2. BF5F8BD8: 'SSDT', 'PROC', Rev: 1, Len: 334
+10:509  0:000    3. BF5F8D28: 'MCFG', 'WN09', Rev: 1, Len: 60
+10:509  0:000    4. BF5F8D68: 'HPET', 'WN09', Rev: 1, Len: 56
+10:509  0:000    5. BF5F8DA0: 'OSFR', 'M08    ', Rev: 1, Len: 140
+10:509  0:000  Found UEFI Acpi 2.0 RSDP at BF1F1000
+10:509  0:000  Printing ACPI tables from RSDP BF1F1000 ...
+10:509  0:000   BF1F1000: 'RSD PTR ', Rev: 3 (Acpi 2.0 or newer), Len: 36
+10:509  0:000    (Xsdt: BF5EF080, Rsdt: BF5EF040)
+10:509  0:000    BF5EF080: 'XSDT', 'WN09   ', Rev: 1, Len: 84
+10:509  0:000    BF5EF040: 'RSDT', 'WN09    ', Rev: 1, Len: 60
+10:509  0:000    Tables in Xsdt: 6
+10:509  0:000    0. BF5F8A68: 'FACP', 'WN09   ', Rev: 4, Len: 244
+10:509  0:000        (Dsdt: BF5EF168, Facs: BF62CF40, XDsdt: BF5EF168, XFacs: BF62CF80)
+10:509  0:000        BF5EF168: 'DSDT', 'WN09   ', Rev: 2, Len: 39168
+10:509  0:000        * BF621C18: 'SSDT', 'IST', Rev: 1, Len: 932  53 53 44 54 A4 03 00 00 01 EA 41 4D 49 00 00 00 
+10:510  0:000        BF62CF80: 'FACS', Ver: 1, Len: 64
+10:510  0:000    1. BF5F8B60: 'APIC', 'WN09    ', Rev: 1, Len: 114
+10:510  0:000    2. BF5F8BD8: 'SSDT', 'PROC', Rev: 1, Len: 334
+10:510  0:000    3. BF5F8D28: 'MCFG', 'WN09', Rev: 1, Len: 60
+10:510  0:000    4. BF5F8D68: 'HPET', 'WN09', Rev: 1, Len: 56
+10:510  0:000    5. BF5F8DA0: 'OSFR', 'M08    ', Rev: 1, Len: 140
+10:510  0:000    Tables in Rsdt: 6
+10:510  0:000    0. BF5EF0E0: 'FACP', 'WN09   ', Rev: 2, Len: 132
+10:510  0:000        (Dsdt: BF5EF168, Facs: BF62CF40)
+10:510  0:000        BF5EF168: 'DSDT', 'WN09   ', Rev: 2, Len: 39168
+10:510  0:000        * BF621C18: 'SSDT', 'IST', Rev: 1, Len: 932  53 53 44 54 A4 03 00 00 01 EA 41 4D 49 00 00 00 
+10:510  0:000        BF62CF40: 'FACS', Ver: 0, Len: 64
+10:510  0:000    1. BF5F8B60: 'APIC', 'WN09    ', Rev: 1, Len: 114
+10:510  0:000    2. BF5F8BD8: 'SSDT', 'PROC', Rev: 1, Len: 334
+10:510  0:000    3. BF5F8D28: 'MCFG', 'WN09', Rev: 1, Len: 60
+10:510  0:000    4. BF5F8D68: 'HPET', 'WN09', Rev: 1, Len: 56
+10:510  0:000    5. BF5F8DA0: 'OSFR', 'M08    ', Rev: 1, Len: 140
