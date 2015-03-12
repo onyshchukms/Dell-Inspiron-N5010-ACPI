@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Fri Mar 13 00:31:33 2015
+ * Disassembly of DSDT.aml, Fri Mar 13 00:35:35 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
  *     Length           0x00009B15 (39701)
  *     Revision         0x02
- *     Checksum         0x96
+ *     Checksum         0xB2
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -7960,7 +7960,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             PCST,   1
         }
 
-        Device (PXSX)
+        Device (APRT)
         {
             Name (_ADR, Zero)  // _ADR: Address
             Name (_SUN, 0x001C0001)  // _SUN: Slot User Number
