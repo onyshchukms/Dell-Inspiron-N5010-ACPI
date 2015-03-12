@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Thu Mar 12 22:20:37 2015
+ * Disassembly of DSDT.aml, Thu Mar 12 23:26:21 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
  *     Length           0x000099E0 (39392)
  *     Revision         0x02
- *     Checksum         0x0F
+ *     Checksum         0x11
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -7930,7 +7930,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     })
                 }
 
-                Return (Package (0x0C)
+                Return (Package (0x0A)
                 {
                     "built-in", 
                     Buffer (One)
