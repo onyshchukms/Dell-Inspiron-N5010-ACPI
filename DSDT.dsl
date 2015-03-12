@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Fri Mar 13 00:23:07 2015
+ * Disassembly of DSDT.aml, Fri Mar 13 00:31:33 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x00009A75 (39541)
+ *     Length           0x00009B15 (39701)
  *     Revision         0x02
- *     Checksum         0x5A
+ *     Checksum         0x96
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -8033,6 +8033,49 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 ,   30, 
             HPST,   1, 
             PCST,   1
+        }
+
+        Device (LAN0)
+        {
+            Name (_ADR, Zero)  // _ADR: Address
+            Name (_SUN, 0x001C0002)  // _SUN: Slot User Number
+            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            {
+                If ((Arg2 == Zero))
+                {
+                    Return (Buffer (One)
+                    {
+                         0x03                                             /* . */
+                    })
+                }
+
+                Return (Package (0x08)
+                {
+                    "built-in", 
+                    Buffer (One)
+                    {
+                         0x00                                             /* . */
+                    }, 
+
+                    "name", 
+                    Buffer (0x09)
+                    {
+                        "Ethernet"
+                    }, 
+
+                    "model", 
+                    Buffer (0x2B)
+                    {
+                        "Realtek RTL8103E PCI Express Fast Ethernet"
+                    }, 
+
+                    "device_type", 
+                    Buffer (0x09)
+                    {
+                        "Ethernet"
+                    }
+                })
+            }
         }
     }
 
