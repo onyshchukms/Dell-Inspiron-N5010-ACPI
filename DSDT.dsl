@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Fri Mar 13 12:52:31 2015
+ * Disassembly of DSDT.aml, Fri Mar 13 13:43:46 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x000090C1 (37057)
+ *     Length           0x0000893D (35133)
  *     Revision         0x02
- *     Checksum         0x5D
+ *     Checksum         0xEA
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -62,7 +62,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
     Name (GPLN, 0x80)
     Name (ACPH, 0xDE)
     Name (ASSB, Zero)
-    Name (AOTB, Zero)
     Name (AAXB, Zero)
     Name (PEHP, One)
     Name (SHPC, One)
@@ -119,158 +118,11 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         0x64
     })
     Name (PEPM, Zero)
-    Method (RRIO, 4, NotSerialized)
-    {
-        Debug = "RRIO"
-    }
-
-    Method (RDMA, 3, NotSerialized)
-    {
-        Debug = "rDMA"
-    }
-
     Name (PICM, Zero)
     Method (_PIC, 1, NotSerialized)  // _PIC: Interrupt Model
     {
         DBG8 = 0xAA
         PICM = Arg0
-    }
-
-    Name (OSVR, Ones)
-    Method (OSFL, 0, NotSerialized)
-    {
-        If ((OSVR != Ones))
-        {
-            Return (OSVR) /* \OSVR */
-        }
-
-        OSVR = One
-        If (CondRefOf (_OSI, Local0))
-        {
-            If (_OSI ("Linux"))
-            {
-                OSVR = 0x03
-            }
-
-            If ((_OSI ("Darwin") || _OSI ("Windows 2001")))
-            {
-                OSVR = 0x04
-            }
-
-            If (_OSI ("Windows 2001.1"))
-            {
-                OSVR = 0x05
-            }
-
-            If (_OSI ("FreeBSD"))
-            {
-                OSVR = 0x06
-            }
-
-            If (_OSI ("HP-UX"))
-            {
-                OSVR = 0x07
-            }
-
-            If (_OSI ("OpenVMS"))
-            {
-                OSVR = 0x08
-            }
-
-            If (_OSI ("Windows 2001 SP1"))
-            {
-                OSVR = 0x09
-            }
-
-            If (_OSI ("Windows 2001 SP2"))
-            {
-                OSVR = 0x0A
-            }
-
-            If (_OSI ("Windows 2001 SP3"))
-            {
-                OSVR = 0x0B
-            }
-
-            If (_OSI ("Windows 2006"))
-            {
-                OSVR = 0x0C
-            }
-
-            If (_OSI ("Windows 2006 SP1"))
-            {
-                OSVR = 0x0D
-            }
-
-            If (_OSI ("Windows 2009"))
-            {
-                OSVR = 0x0E
-            }
-        }
-        Else
-        {
-            If (MCTH (_OS, "Microsoft Windows NT"))
-            {
-                OSVR = Zero
-            }
-
-            If (MCTH (_OS, "Microsoft Windows"))
-            {
-                OSVR = One
-            }
-
-            If (MCTH (_OS, "Microsoft WindowsME: Millennium Edition"))
-            {
-                OSVR = 0x02
-            }
-
-            If (MCTH (_OS, "Linux"))
-            {
-                OSVR = 0x03
-            }
-
-            If (MCTH (_OS, "FreeBSD"))
-            {
-                OSVR = 0x06
-            }
-
-            If (MCTH (_OS, "HP-UX"))
-            {
-                OSVR = 0x07
-            }
-
-            If (MCTH (_OS, "OpenVMS"))
-            {
-                OSVR = 0x08
-            }
-        }
-
-        Return (OSVR) /* \OSVR */
-    }
-
-    Method (MCTH, 2, NotSerialized)
-    {
-        If ((SizeOf (Arg0) < SizeOf (Arg1)))
-        {
-            Return (Zero)
-        }
-
-        Local0 = (SizeOf (Arg0) + One)
-        Name (BUF0, Buffer (Local0) {})
-        Name (BUF1, Buffer (Local0) {})
-        BUF0 = Arg0
-        BUF1 = Arg1
-        While (Local0)
-        {
-            Local0--
-            If ((DerefOf (Index (BUF0, Local0)) != DerefOf (Index (BUF1, Local0
-                ))))
-            {
-                Return (Zero)
-            }
-        }
-
-        Return (One)
     }
 
     Name (PRWP, Package (0x02)
@@ -292,14 +144,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         Else
         {
             Local0 >>= One
-            If (((OSFL () == One) || (OSFL () == 0x02)))
-            {
-                FindSetLeftBit (Local0, Index (PRWP, One))
-            }
-            Else
-            {
-                FindSetRightBit (Local0, Index (PRWP, One))
-            }
+            FindSetRightBit (Local0, Index (PRWP, One))
         }
 
         Return (PRWP) /* \PRWP */
@@ -1275,32 +1120,12 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             Name (_HID, EisaId ("PNP0A08") /* PCI Express Bus */)  // _HID: Hardware ID
             Name (_CID, EisaId ("PNP0A03") /* PCI Bus */)  // _CID: Compatible ID
             Name (_ADR, Zero)  // _ADR: Address
-            Method (^BN00, 0, NotSerialized)
-            {
-                Return (Zero)
-            }
-
-            Method (_BBN, 0, NotSerialized)  // _BBN: BIOS Bus Number
-            {
-                Return (BN00 ())
-            }
-
+            Name (_BBN, Zero)  // _BBN: BIOS Bus Number
             Name (_UID, Zero)  // _UID: Unique ID
+            Name (_S3D, 0x03)  // _S3D: S3 Device State
             Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
             {
                 Return (AR00) /* \_SB_.AR00 */
-            }
-
-            Method (_S3D, 0, NotSerialized)  // _S3D: S3 Device State
-            {
-                If (((OSFL () == One) || (OSFL () == 0x02)))
-                {
-                    Return (0x02)
-                }
-                Else
-                {
-                    Return (0x03)
-                }
             }
 
             Device (MCEH)
@@ -4739,25 +4564,17 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         }
     }
 
-    Name (WOTB, Zero)
     Name (WSSB, Zero)
     Name (WAXB, Zero)
     Method (_PTS, 1, NotSerialized)  // _PTS: Prepare To Sleep
     {
         DBG8 = Arg0
-        If (((Arg0 == 0x04) && (OSFL () == 0x02)))
-        {
-            Sleep (0x0BB8)
-        }
-
         PTS (Arg0)
         Index (WAKP, Zero) = Zero
         Index (WAKP, One) = Zero
         WSSB = ASSB /* \ASSB */
-        WOTB = AOTB /* \AOTB */
         WAXB = AAXB /* \AAXB */
         ASSB = Arg0
-        AOTB = OSFL ()
         AAXB = Zero
         \_SB.SLPS = One
     }
@@ -4769,7 +4586,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         If (ASSB)
         {
             ASSB = WSSB /* \WSSB */
-            AOTB = WOTB /* \WOTB */
             AAXB = WAXB /* \WAXB */
         }
 
@@ -5455,45 +5271,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 Return ((CSTS == 0x03))
             }
 
-            Method (OSYS, 0, NotSerialized)
-            {
-                Local1 = 0x07D0
-                If (CondRefOf (_OSI, Local0))
-                {
-                    If (_OSI ("Linux"))
-                    {
-                        Local1 = 0x03E8
-                    }
-
-                    If ((_OSI ("Darwin") || _OSI ("Windows 2001")))
-                    {
-                        Local1 = 0x07D1
-                    }
-
-                    If (_OSI ("Windows 2001 SP1"))
-                    {
-                        Local1 = 0x07D1
-                    }
-
-                    If (_OSI ("Windows 2001 SP2"))
-                    {
-                        Local1 = 0x07D2
-                    }
-
-                    If (_OSI ("Windows 2006"))
-                    {
-                        Local1 = 0x07D6
-                    }
-
-                    If (_OSI ("Windows 2009"))
-                    {
-                        Local1 = 0x07D9
-                    }
-                }
-
-                Return (Local1)
-            }
-
             Method (GNOT, 2, NotSerialized)
             {
                 If (PDRD ())
@@ -5505,14 +5282,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 CSTS = 0x03
                 If (((CHPD == Zero) && (Arg1 == Zero)))
                 {
-                    If (((OSYS () > 0x07D0) || (OSYS () < 0x07D6)))
-                    {
-                        Notify (PCI0, Arg1)
-                    }
-                    Else
-                    {
-                        Notify (GFX0, Arg1)
-                    }
+                    Notify (PCI0, Arg1)
                 }
 
                 If (CondRefOf (HNOT))
@@ -7350,87 +7120,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         SX11 ()
         Local0 = SX42 ()
         SX12 ()
-        If ((OSYS >= 0x20))
-        {
-            If ((Local0 & 0x0400))
-            {
-                Local1 = GPUF /* \GPUF */
-                Name (T_0, Zero)
-                T_0 = Local1
-                If ((T_0 == One))
-                {
-                    Notify (\_SB.PCI0.P0P1.PEGP.LCD, 0x86) // Device-Specific
-                }
-                Else
-                {
-                    If ((T_0 == 0x02))
-                    {
-                        Notify (\_SB.PCI0.P0P2.PEGP.LCD, 0x86) // Device-Specific
-                    }
-                    Else
-                    {
-                        If ((T_0 == 0x03))
-                        {
-                            SGBU ()
-                        }
-                        Else
-                        {
-                            If ((T_0 == 0x04))
-                            {
-                                If ((_REV != 0x03))
-                                {
-                                    Notify (\_SB.PCI0.GFX0.DD02, 0x86) // Device-Specific
-                                }
-                            }
-                            Else
-                            {
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        If ((OSYS >= 0x20))
-        {
-            If ((Local0 & 0x0200))
-            {
-                Local1 = GPUF /* \GPUF */
-                Name (T_1, Zero)
-                T_1 = Local1
-                If ((T_1 == One))
-                {
-                    Notify (\_SB.PCI0.P0P1.PEGP.LCD, 0x87) // Device-Specific
-                }
-                Else
-                {
-                    If ((T_1 == 0x02))
-                    {
-                        Notify (\_SB.PCI0.P0P2.PEGP.LCD, 0x87) // Device-Specific
-                    }
-                    Else
-                    {
-                        If ((T_1 == 0x03))
-                        {
-                            SGBD ()
-                        }
-                        Else
-                        {
-                            If ((T_1 == 0x04))
-                            {
-                                If ((_REV != 0x03))
-                                {
-                                    Notify (\_SB.PCI0.GFX0.DD02, 0x87) // Device-Specific
-                                }
-                            }
-                            Else
-                            {
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 
     Method (SGTG, 0, NotSerialized)
@@ -7511,14 +7200,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             {
                 If (((MIS1 != Local0) | (Local0 == Zero)))
                 {
-                    If ((OSYS >= 0x20))
-                    {
-                        \_SB.PCI0.GFX0.GLID (Local0)
-                    }
-                    Else
-                    {
-                        LIDE ()
-                    }
+                    LIDE ()
                 }
             }
         }
@@ -9014,99 +8696,11 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         }
     }
 
-    Name (W98S, "Microsoft Windows")
-    Name (NT5S, "Microsoft Windows NT")
-    Name (WINM, "Microsoft WindowsME: Millennium Edition")
-    Name (WXP, "Windows 2001")
-    Name (WLG, "Windows 2006")
-    Name (WIN7, "Windows 2009")
-    Name (LNX, "Linux")
-    Name (OSX, "Darwin")
-    Method (GETZ, 2, NotSerialized)
-    {
-        CreateByteField (Arg0, Arg1, TCHR)
-        Return (TCHR) /* \GETZ.TCHR */
-    }
-
-    Method (STRE, 2, NotSerialized)
-    {
-        Name (STR1, Buffer (0x50) {})
-        Name (STR2, Buffer (0x50) {})
-        STR1 = Arg0
-        STR2 = Arg1
-        Local0 = Zero
-        Local1 = One
-        While (Local1)
-        {
-            Local1 = GETZ (STR1, Local0)
-            Local2 = GETZ (STR2, Local0)
-            If ((Local1 != Local2))
-            {
-                Return (Zero)
-            }
-
-            Local0++
-        }
-
-        Return (One)
-    }
-
-    Method (OSID, 0, NotSerialized)
-    {
-        If ((MIS3 == Zero))
-        {
-            MIS3 = One
-            If (CondRefOf (_OSI, Local0))
-            {
-                If ((_OSI (OSX) || _OSI (WXP)))
-                {
-                    MIS3 = 0x10
-                }
-
-                If (_OSI (WLG))
-                {
-                    MIS3 = 0x20
-                }
-
-                If (_OSI (WIN7))
-                {
-                    MIS3 = 0x80
-                }
-
-                If (_OSI (LNX))
-                {
-                    MIS3 = 0x40
-                }
-            }
-            Else
-            {
-                If (STRE (_OS, W98S))
-                {
-                    MIS3 = 0x02
-                }
-
-                If (STRE (_OS, NT5S))
-                {
-                    MIS3 = 0x08
-                }
-
-                If (STRE (_OS, WINM))
-                {
-                    MIS3 = 0x04
-                }
-            }
-        }
-
-        OSYS = MIS3 /* \MIS3 */
-        Return (MIS3) /* \MIS3 */
-    }
-
     Method (SOST, 0, NotSerialized)
     {
         SX10 ()
         SX30 (0x0A)
-        OSID ()
-        SX30 (MIS3)
+        SX30 (0x10)
         SX11 ()
         SX12 ()
     }
@@ -9118,10 +8712,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             MIS0 = SMI (0x98, Zero)
             MIS0 &= 0x13
             SOST ()
-            If ((OSYS == 0x10))
-            {
-                SMI (0xE3, Zero)
-            }
+            SMI (0xE3, Zero)
         }
     }
 
