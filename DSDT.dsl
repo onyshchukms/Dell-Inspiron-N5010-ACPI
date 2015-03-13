@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Fri Mar 13 20:29:09 2015
+ * Disassembly of DSDT.aml, Fri Mar 13 21:18:57 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x000067FF (26623)
+ *     Length           0x0000655B (25947)
  *     Revision         0x02
- *     Checksum         0x03
+ *     Checksum         0x1B
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -1161,47 +1161,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 Device (PEGP)
                 {
                     Name (_ADR, 0xFFFF)  // _ADR: Address
-                }
-            }
-
-            Device (P0P2)
-            {
-                Name (_ADR, 0x00030000)  // _ADR: Address
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    Return (GPRW (0x09, 0x03))
-                }
-
-                Device (PEGP)
-                {
-                    Name (_ADR, Zero)  // _ADR: Address
-                }
-            }
-
-            Device (P0P3)
-            {
-                Name (_ADR, 0x00040000)  // _ADR: Address
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    Return (GPRW (0x09, 0x03))
-                }
-            }
-
-            Device (P0P4)
-            {
-                Name (_ADR, 0x00050000)  // _ADR: Address
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    Return (GPRW (0x09, 0x03))
-                }
-            }
-
-            Device (P0P5)
-            {
-                Name (_ADR, 0x00060000)  // _ADR: Address
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    Return (GPRW (0x09, 0x03))
                 }
             }
 
@@ -3938,10 +3897,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             Method (_L09, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
             {
                 Notify (\_SB.PCI0.P0P1, 0x02) // Device Wake
-                Notify (\_SB.PCI0.P0P2, 0x02) // Device Wake
-                Notify (\_SB.PCI0.P0P3, 0x02) // Device Wake
-                Notify (\_SB.PCI0.P0P4, 0x02) // Device Wake
-                Notify (\_SB.PCI0.P0P5, 0x02) // Device Wake
                 Notify (\_SB.PCI0.PEX0, 0x02) // Device Wake
                 Notify (\_SB.PCI0.PEX1, 0x02) // Device Wake
                 Notify (\_SB.PCI0.PEX2, 0x02) // Device Wake
@@ -4797,154 +4752,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         }
     }
 
-    Scope (_SB.PCI0.P0P2.PEGP)
-    {
-        Method (_INI, 0, NotSerialized)  // _INI: Initialize
-        {
-            ^^^P0P1.PEGP._ADR = Zero
-        }
-
-        OperationRegion (DGPU, PCI_Config, Zero, 0x30)
-        Field (DGPU, AnyAcc, NoLock, Preserve)
-        {
-            DGID,   16, 
-            Offset (0x2C), 
-            DVID,   32
-        }
-
-        Method (_DOS, 1, NotSerialized)  // _DOS: Disable Output Switching
-        {
-            DSEN = (Arg0 & 0x03)
-        }
-
-        Method (_DOD, 0, NotSerialized)  // _DOD: Display Output Devices
-        {
-            Return (Package (0x03)
-            {
-                0x00010100, 
-                0x00010110, 
-                0x00010210
-            })
-        }
-
-        Device (CRT)
-        {
-            Method (_ADR, 0, NotSerialized)  // _ADR: Address
-            {
-                Return (0x0100)
-            }
-
-            Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
-            {
-                Local0 = SMI (0x8E, 0x02)
-                Return (Local0)
-            }
-
-            Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
-            {
-                Local0 = SMI (0x99, 0x02)
-                Return (Local0)
-            }
-
-            Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
-            {
-                DSS (0x02, Arg0)
-            }
-        }
-
-        Device (LCD)
-        {
-            Method (_ADR, 0, NotSerialized)  // _ADR: Address
-            {
-                Return (0x0110)
-            }
-
-            Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
-            {
-                Local0 = SMI (0x8E, One)
-                Return (Local0)
-            }
-
-            Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
-            {
-                Local0 = SMI (0x99, One)
-                Return (Local0)
-            }
-
-            Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
-            {
-                DSS (One, Arg0)
-            }
-
-            Method (_BCL, 0, NotSerialized)  // _BCL: Brightness Control Levels
-            {
-                Return (Package (0x12)
-                {
-                    0x64, 
-                    0x1E, 
-                    0x06, 
-                    0x0C, 
-                    0x12, 
-                    0x18, 
-                    0x1E, 
-                    0x24, 
-                    0x2A, 
-                    0x30, 
-                    0x36, 
-                    0x3C, 
-                    0x42, 
-                    0x48, 
-                    0x4E, 
-                    0x54, 
-                    0x5A, 
-                    0x64
-                })
-            }
-
-            Method (_BCM, 1, NotSerialized)  // _BCM: Brightness Control Method
-            {
-                SX10 ()
-                SX30 (0x19)
-                SX30 (One)
-                SX30 (Arg0)
-                BRTL = Arg0
-                SX11 ()
-                SX12 ()
-            }
-
-            Method (_BQC, 0, NotSerialized)  // _BQC: Brightness Query Current
-            {
-                Local0 = SMI (0x19, 0x02)
-                Return (Local0)
-            }
-        }
-
-        Device (DVI)
-        {
-            Method (_ADR, 0, NotSerialized)  // _ADR: Address
-            {
-                Return (0x0210)
-            }
-
-            Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
-            {
-                Local0 = SMI (0x8E, 0x02)
-                Return (Local0)
-            }
-
-            Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
-            {
-                Local0 = SMI (0x99, 0x08)
-                Return (Local0)
-            }
-
-            Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
-            {
-                DSS (0x02, Arg0)
-            }
-        }
-    }
-
     OperationRegion (RCRB, SystemMemory, SRCB, SRCL)
     Field (RCRB, ByteAcc, NoLock, Preserve)
     {
@@ -5651,10 +5458,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             }
             Else
             {
-                If ((T_0 == 0x02))
-                {
-                    Notify (\_SB.PCI0.P0P2.PEGP, 0x80) // Status Change
-                }
+                If ((T_0 == 0x02)) {}
                 Else
                 {
                     If ((T_0 == 0x03))
