@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Fri Mar 13 16:19:40 2015
+ * Disassembly of DSDT.aml, Fri Mar 13 19:31:59 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x000069EC (27116)
+ *     Length           0x0000693C (26940)
  *     Revision         0x02
- *     Checksum         0xD8
+ *     Checksum         0x24
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -25,9 +25,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
     External (_PR_.CPU1, ProcessorObj)
     External (_PR_.CPU2, ProcessorObj)
     External (_PR_.CPU3, ProcessorObj)
-    External (_SB_.PCI0.P0P1.PEGP.DD02, UnknownObj)
-    External (_SB_.PCI0.P0P1.PEGP.PO52, IntObj)
-    External (_SB_.PCI0.WMI1, UnknownObj)
 
     Name (PEBS, 0xE0000000)
     Name (PEBL, 0x10000000)
@@ -5725,7 +5722,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 {
                     If ((T_0 == 0x03))
                     {
-                        SGTG ()
+                        Notify (\_SB.PCI0.P0P1.PEGP, 0x80) // Status Change
                     }
                 }
             }
@@ -5753,36 +5750,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         SX11 ()
         Local0 = SX42 ()
         SX12 ()
-    }
-
-    Method (SGTG, 0, NotSerialized)
-    {
-        If (\_SB.PCI0.P0P1.PEGP.PO52)
-        {
-            Notify (\_SB.PCI0.WMI1, 0x80) // Status Change
-        }
-        Else
-        {
-            Notify (\_SB.PCI0.P0P1.PEGP, 0x80) // Status Change
-        }
-    }
-
-    Method (SGBD, 0, NotSerialized)
-    {
-        If (\_SB.PCI0.P0P1.PEGP.PO52) {}
-        Else
-        {
-            Notify (\_SB.PCI0.P0P1.PEGP.DD02, 0x87) // Device-Specific
-        }
-    }
-
-    Method (SGBU, 0, NotSerialized)
-    {
-        If (\_SB.PCI0.P0P1.PEGP.PO52) {}
-        Else
-        {
-            Notify (\_SB.PCI0.P0P1.PEGP.DD02, 0x86) // Device-Specific
-        }
     }
 
     Scope (_GPE)
