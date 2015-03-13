@@ -5,27 +5,27 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of SSDT-0x.aml, Thu Mar 12 19:11:40 2015
+ * Disassembly of SSDT-0x.aml, Fri Mar 13 03:12:20 2015
  *
  * Original Table Header:
  *     Signature        "SSDT"
- *     Length           0x000003A4 (932)
+ *     Length           0x00000398 (920)
  *     Revision         0x01
- *     Checksum         0xEA
+ *     Checksum         0x7A
  *     OEM ID           "AMI"
  *     OEM Table ID     "IST"
  *     OEM Revision     0x00000001 (1)
- *     Compiler ID      "MSFT"
- *     Compiler Version 0x03000001 (50331649)
+ *     Compiler ID      "INTL"
+ *     Compiler Version 0x20150204 (538247684)
  */
 DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
 {
 
     External (_PR_.APSS, PkgObj)
-    External (_PR_.P000, DeviceObj)
-    External (_PR_.P001, DeviceObj)
-    External (_PR_.P002, DeviceObj)
-    External (_PR_.P003, DeviceObj)
+    External (_PR_.CPU0, DeviceObj)
+    External (_PR_.CPU1, DeviceObj)
+    External (_PR_.CPU2, DeviceObj)
+    External (_PR_.CPU3, DeviceObj)
     External (_PR_.PDCV, IntObj)
     External (_PR_.PTCI, PkgObj)
     External (_PR_.TSSI, PkgObj)
@@ -33,7 +33,7 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
     External (SMI_, MethodObj)    // 2 Arguments
     External (TSTE, IntObj)
 
-    Scope (\_PR.P000)
+    Scope (\_PR.CPU0)
     {
         Name (_PCT, Package (0x02)  // _PCT: Performance Control
         {
@@ -62,7 +62,7 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
 
         Method (_PPC, 0, NotSerialized)  // _PPC: Performance Present Capabilites
         {
-            Local0 = SMI (0xAD, 0x00)
+            Local0 = SMI (0xAD, Zero)
             Return (Local0)
         }
 
@@ -71,8 +71,8 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
             Package (0x05)
             {
                 0x05, 
-                0x00, 
-                0x00, 
+                Zero, 
+                Zero, 
                 0xFE, 
                 0x04
             }
@@ -122,7 +122,7 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
         }
     }
 
-    Scope (\_PR.P001)
+    Scope (\_PR.CPU1)
     {
         Name (_PCT, Package (0x02)  // _PCT: Performance Control
         {
@@ -151,7 +151,7 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
 
         Method (_PPC, 0, NotSerialized)  // _PPC: Performance Present Capabilites
         {
-            Local0 = SMI (0xAD, 0x00)
+            Local0 = SMI (0xAD, Zero)
             Return (Local0)
         }
 
@@ -160,8 +160,8 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
             Package (0x05)
             {
                 0x05, 
-                0x00, 
-                0x00, 
+                Zero, 
+                Zero, 
                 0xFE, 
                 0x04
             }
@@ -211,7 +211,7 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
         }
     }
 
-    Scope (\_PR.P002)
+    Scope (\_PR.CPU2)
     {
         Name (_PCT, Package (0x02)  // _PCT: Performance Control
         {
@@ -240,7 +240,7 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
 
         Method (_PPC, 0, NotSerialized)  // _PPC: Performance Present Capabilites
         {
-            Local0 = SMI (0xAD, 0x00)
+            Local0 = SMI (0xAD, Zero)
             Return (Local0)
         }
 
@@ -249,8 +249,8 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
             Package (0x05)
             {
                 0x05, 
-                0x00, 
-                0x00, 
+                Zero, 
+                Zero, 
                 0xFE, 
                 0x04
             }
@@ -300,7 +300,7 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
         }
     }
 
-    Scope (\_PR.P003)
+    Scope (\_PR.CPU3)
     {
         Name (_PCT, Package (0x02)  // _PCT: Performance Control
         {
@@ -329,7 +329,7 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
 
         Method (_PPC, 0, NotSerialized)  // _PPC: Performance Present Capabilites
         {
-            Local0 = SMI (0xAD, 0x00)
+            Local0 = SMI (0xAD, Zero)
             Return (Local0)
         }
 
@@ -338,8 +338,8 @@ DefinitionBlock ("SSDT-0x.aml", "SSDT", 1, "AMI", "IST", 0x00000001)
             Package (0x05)
             {
                 0x05, 
-                0x00, 
-                0x00, 
+                Zero, 
+                Zero, 
                 0xFE, 
                 0x04
             }

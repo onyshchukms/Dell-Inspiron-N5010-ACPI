@@ -5,18 +5,18 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of SSDT-1.aml, Thu Mar 12 19:11:32 2015
+ * Disassembly of SSDT-1.aml, Fri Mar 13 03:12:10 2015
  *
  * Original Table Header:
  *     Signature        "SSDT"
- *     Length           0x0000014E (334)
+ *     Length           0x0000014C (332)
  *     Revision         0x01
- *     Checksum         0xB9
+ *     Checksum         0x29
  *     OEM ID           "AMICPU"
  *     OEM Table ID     "PROC"
  *     OEM Revision     0x00000001 (1)
- *     Compiler ID      "MSFT"
- *     Compiler Version 0x03000001 (50331649)
+ *     Compiler ID      "INTL"
+ *     Compiler Version 0x20150204 (538247684)
  */
 DefinitionBlock ("SSDT-1.aml", "SSDT", 1, "AMICPU", "PROC", 0x00000001)
 {
@@ -27,7 +27,7 @@ DefinitionBlock ("SSDT-1.aml", "SSDT", 1, "AMICPU", "PROC", 0x00000001)
 
     Scope (\_PR)
     {
-        Processor (P000, 0x01, 0x00000410, 0x06)
+        Processor (CPU0, 0x01, 0x00000410, 0x06)
         {
             Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
             {
@@ -45,7 +45,7 @@ DefinitionBlock ("SSDT-1.aml", "SSDT", 1, "AMICPU", "PROC", 0x00000001)
             }
         }
 
-        Processor (P001, 0x02, 0x00000410, 0x06)
+        Processor (CPU1, 0x02, 0x00000410, 0x06)
         {
             Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
             {
@@ -63,7 +63,7 @@ DefinitionBlock ("SSDT-1.aml", "SSDT", 1, "AMICPU", "PROC", 0x00000001)
             }
         }
 
-        Processor (P002, 0x03, 0x00000410, 0x06)
+        Processor (CPU2, 0x03, 0x00000410, 0x06)
         {
             Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
             {
@@ -81,7 +81,7 @@ DefinitionBlock ("SSDT-1.aml", "SSDT", 1, "AMICPU", "PROC", 0x00000001)
             }
         }
 
-        Processor (P003, 0x04, 0x00000410, 0x06)
+        Processor (CPU3, 0x04, 0x00000410, 0x06)
         {
             Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
             {

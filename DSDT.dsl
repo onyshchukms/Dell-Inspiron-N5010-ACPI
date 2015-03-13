@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Fri Mar 13 02:57:11 2015
+ * Disassembly of DSDT.aml, Fri Mar 13 03:11:38 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
  *     Length           0x00009B15 (39701)
  *     Revision         0x02
- *     Checksum         0x60
+ *     Checksum         0x80
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -28,10 +28,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
     External (HNOT, MethodObj)    // 1 Arguments
     External (IDAB, MethodObj)    // 0 Arguments
 
-    External (_PR_.P000, ProcessorObj)
-    External (_PR_.P001, ProcessorObj)
-    External (_PR_.P002, ProcessorObj)
-    External (_PR_.P003, ProcessorObj)
+    External (_PR_.CPU0, ProcessorObj)
+    External (_PR_.CPU1, ProcessorObj)
+    External (_PR_.CPU2, ProcessorObj)
+    External (_PR_.CPU3, ProcessorObj)
     External (_SB_.PCI0.GFX0.DACE, UnknownObj)
     External (_SB_.PCI0.GFX0.HGNC, UnknownObj)
     External (_SB_.PCI0.P0P1.PEGP.DD02, UnknownObj)
@@ -8497,10 +8497,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
 
         If ((Local0 & 0x08))
         {
-            Notify (\_PR.P000, 0x80) // Status Change
-            Notify (\_PR.P001, 0x80) // Status Change
-            Notify (\_PR.P002, 0x80) // Status Change
-            Notify (\_PR.P003, 0x80) // Status Change
+            Notify (\_PR.CPU0, 0x80) // Status Change
+            Notify (\_PR.CPU1, 0x80) // Status Change
+            Notify (\_PR.CPU2, 0x80) // Status Change
+            Notify (\_PR.CPU3, 0x80) // Status Change
         }
     }
 
