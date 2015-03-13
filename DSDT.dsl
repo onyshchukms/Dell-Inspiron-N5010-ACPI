@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Fri Mar 13 03:11:38 2015
+ * Disassembly of DSDT.aml, Fri Mar 13 04:21:14 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
  *     Length           0x00009B15 (39701)
  *     Revision         0x02
- *     Checksum         0x80
+ *     Checksum         0x34
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -8409,7 +8409,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         MIS0 = (Local0 & 0x13)
         If ((Local1 & One))
         {
-            Notify (\_SB.AC, 0x80) // Status Change
+            Notify (\_SB.ADP1, 0x80) // Status Change
         }
 
         Local2 = (MIS0 & 0x02)
@@ -8662,7 +8662,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
     {
         SOST ()
         MIS0 = ECG5 ()
-        Notify (\_SB.AC, 0x80) // Status Change
+        Notify (\_SB.ADP1, 0x80) // Status Change
         SMI (0x9A, Arg0)
         Local1 = GPUF /* \GPUF */
         If ((Local1 == 0x04))
@@ -10344,7 +10344,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
 
     Scope (_SB)
     {
-        Device (AC)
+        Device (ADP1)
         {
             Name (_HID, "ACPI0003" /* Power Source Device */)  // _HID: Hardware ID
             Name (_PCL, Package (0x01)  // _PCL: Power Consumer List
