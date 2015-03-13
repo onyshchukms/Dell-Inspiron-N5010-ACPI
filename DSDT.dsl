@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Fri Mar 13 19:31:59 2015
+ * Disassembly of DSDT.aml, Fri Mar 13 20:29:09 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x0000693C (26940)
+ *     Length           0x000067FF (26623)
  *     Revision         0x02
- *     Checksum         0x24
+ *     Checksum         0x03
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -146,12 +146,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
     Field (DEB0, ByteAcc, NoLock, Preserve)
     {
         DBG8,   8
-    }
-
-    OperationRegion (DEB1, SystemIO, 0x90, 0x02)
-    Field (DEB1, WordAcc, NoLock, Preserve)
-    {
-        DBG9,   16
     }
 
     Name (SS1, One)
@@ -1154,14 +1148,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     VTCL = VTDL /* \VTDL */
                     Return (MCHR) /* \_SB_.PCI0.MCEH.MCHR */
                 }
-            }
-
-            Method (NPTS, 1, NotSerialized)
-            {
-            }
-
-            Method (NWAK, 1, NotSerialized)
-            {
             }
 
             Device (P0P1)
@@ -4471,10 +4457,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
     {
         Scope (PCI0)
         {
-            Method (_INI, 0, NotSerialized)  // _INI: Initialize
-            {
-            }
-
             Name (CRS, ResourceTemplate ()
             {
                 WordBusNumber (ResourceProducer, MinFixed, MaxFixed, PosDecode,
@@ -4665,51 +4647,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
     {
         Name (_HID, EisaId ("PNP0C01") /* System Board */)  // _HID: Hardware ID
         Name (_UID, One)  // _UID: Unique ID
-    }
-
-    OperationRegion (PRT0, SystemIO, 0x80, 0x04)
-    Field (PRT0, DWordAcc, Lock, Preserve)
-    {
-        P80H,   32
-    }
-
-    Method (P8XH, 2, Serialized)
-    {
-        If ((Arg0 == Zero))
-        {
-            P80D = ((P80D & 0xFFFFFF00) | Arg1)
-        }
-
-        If ((Arg0 == One))
-        {
-            P80D = ((P80D & 0xFFFF00FF) | (Arg1 << 0x08))
-        }
-
-        If ((Arg0 == 0x02))
-        {
-            P80D = ((P80D & 0xFF00FFFF) | (Arg1 << 0x10))
-        }
-
-        If ((Arg0 == 0x03))
-        {
-            P80D = ((P80D & 0x00FFFFFF) | (Arg1 << 0x18))
-        }
-
-        P80H = P80D /* \P80D */
-    }
-
-    OperationRegion (SPRT, SystemIO, 0xB2, 0x02)
-    Field (SPRT, ByteAcc, Lock, Preserve)
-    {
-        SSMP,   8
-    }
-
-    Method (GETB, 3, Serialized)
-    {
-        Local0 = (Arg0 * 0x08)
-        Local1 = (Arg1 * 0x08)
-        CreateField (Arg2, Local0, Local1, TBF3)
-        Return (TBF3) /* \GETB.TBF3 */
     }
 
     Scope (_SB.PCI0.P0P1.PEGP)
@@ -6830,24 +6767,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             MIS0 &= 0x13
             SOST ()
             SMI (0xE3, Zero)
-        }
-    }
-
-    Scope (_SB)
-    {
-        OperationRegion (SMI1, SystemIO, SMIP, 0x02)
-        Field (SMI1, ByteAcc, NoLock, Preserve)
-        {
-            SSMI,   8
-        }
-
-        Mutex (MUTE, 0x00)
-        Method (ESWI, 1, NotSerialized)
-        {
-            Acquire (MUTE, 0xFFFF)
-            ECMD = Arg0
-            SSMI = 0xEC
-            Release (MUTE)
         }
     }
 
