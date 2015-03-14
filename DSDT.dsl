@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Sat Mar 14 18:04:21 2015
+ * Disassembly of DSDT.aml, Sat Mar 14 18:31:23 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x000057EC (22508)
+ *     Length           0x00005381 (21377)
  *     Revision         0x02
- *     Checksum         0x5E
+ *     Checksum         0x75
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -3514,42 +3514,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             Device (PEX0)
             {
                 Name (_ADR, 0x001C0000)  // _ADR: Address
-                OperationRegion (PXRC, PCI_Config, Zero, 0x0100)
-                Field (PXRC, AnyAcc, NoLock, Preserve)
-                {
-                    Offset (0x60), 
-                    Offset (0x62), 
-                    PMS,    1, 
-                    PMP,    1, 
-                    Offset (0xD8), 
-                        ,   30, 
-                    HPE,    1, 
-                    PCE,    1, 
-                        ,   30, 
-                    HPS,    1, 
-                    PCS,    1
-                }
-
-                Method (CSS, 0, NotSerialized)
-                {
-                    PMS = One
-                    PCS = One
-                    PMS = One
-                }
-
-                Method (SPRT, 1, NotSerialized)
-                {
-                    CSS ()
-                    PCE = One
-                    CSS ()
-                }
-
-                Method (WPRT, 1, NotSerialized)
-                {
-                    PCE = Zero
-                    CSS ()
-                }
-
                 Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                 {
                     Return (GPRW (0x09, 0x03))
@@ -3564,42 +3528,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             Device (PEX1)
             {
                 Name (_ADR, 0x001C0001)  // _ADR: Address
-                OperationRegion (PXRC, PCI_Config, Zero, 0x0100)
-                Field (PXRC, AnyAcc, NoLock, Preserve)
-                {
-                    Offset (0x60), 
-                    Offset (0x62), 
-                    PMS,    1, 
-                    PMP,    1, 
-                    Offset (0xD8), 
-                        ,   30, 
-                    HPE,    1, 
-                    PCE,    1, 
-                        ,   30, 
-                    HPS,    1, 
-                    PCS,    1
-                }
-
-                Method (CSS, 0, NotSerialized)
-                {
-                    PMS = One
-                    PCS = One
-                    PMS = One
-                }
-
-                Method (SPRT, 1, NotSerialized)
-                {
-                    CSS ()
-                    PCE = One
-                    CSS ()
-                }
-
-                Method (WPRT, 1, NotSerialized)
-                {
-                    PCE = Zero
-                    CSS ()
-                }
-
                 Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                 {
                     Return (GPRW (0x09, 0x03))
@@ -3653,42 +3581,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             Device (PEX2)
             {
                 Name (_ADR, 0x001C0002)  // _ADR: Address
-                OperationRegion (PXRC, PCI_Config, Zero, 0x0100)
-                Field (PXRC, AnyAcc, NoLock, Preserve)
-                {
-                    Offset (0x60), 
-                    Offset (0x62), 
-                    PMS,    1, 
-                    PMP,    1, 
-                    Offset (0xD8), 
-                        ,   30, 
-                    HPE,    1, 
-                    PCE,    1, 
-                        ,   30, 
-                    HPS,    1, 
-                    PCS,    1
-                }
-
-                Method (CSS, 0, NotSerialized)
-                {
-                    PMS = One
-                    PCS = One
-                    PMS = One
-                }
-
-                Method (SPRT, 1, NotSerialized)
-                {
-                    CSS ()
-                    PCE = One
-                    CSS ()
-                }
-
-                Method (WPRT, 1, NotSerialized)
-                {
-                    PCE = Zero
-                    CSS ()
-                }
-
                 Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                 {
                     Return (GPRW (0x09, 0x04))
@@ -3751,42 +3643,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             Device (PEX3)
             {
                 Name (_ADR, 0x001C0003)  // _ADR: Address
-                OperationRegion (PXRC, PCI_Config, Zero, 0x0100)
-                Field (PXRC, AnyAcc, NoLock, Preserve)
-                {
-                    Offset (0x60), 
-                    Offset (0x62), 
-                    PMS,    1, 
-                    PMP,    1, 
-                    Offset (0xD8), 
-                        ,   30, 
-                    HPE,    1, 
-                    PCE,    1, 
-                        ,   30, 
-                    HPS,    1, 
-                    PCS,    1
-                }
-
-                Method (CSS, 0, NotSerialized)
-                {
-                    PMS = One
-                    PCS = One
-                    PMS = One
-                }
-
-                Method (SPRT, 1, NotSerialized)
-                {
-                    CSS ()
-                    PCE = One
-                    CSS ()
-                }
-
-                Method (WPRT, 1, NotSerialized)
-                {
-                    PCE = Zero
-                    CSS ()
-                }
-
                 Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                 {
                     Return (GPRW (0x09, 0x03))
@@ -3801,42 +3657,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             Device (PEX4)
             {
                 Name (_ADR, 0x001C0004)  // _ADR: Address
-                OperationRegion (PXRC, PCI_Config, Zero, 0x0100)
-                Field (PXRC, AnyAcc, NoLock, Preserve)
-                {
-                    Offset (0x60), 
-                    Offset (0x62), 
-                    PMS,    1, 
-                    PMP,    1, 
-                    Offset (0xD8), 
-                        ,   30, 
-                    HPE,    1, 
-                    PCE,    1, 
-                        ,   30, 
-                    HPS,    1, 
-                    PCS,    1
-                }
-
-                Method (CSS, 0, NotSerialized)
-                {
-                    PMS = One
-                    PCS = One
-                    PMS = One
-                }
-
-                Method (SPRT, 1, NotSerialized)
-                {
-                    CSS ()
-                    PCE = One
-                    CSS ()
-                }
-
-                Method (WPRT, 1, NotSerialized)
-                {
-                    PCE = Zero
-                    CSS ()
-                }
-
                 Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                 {
                     Return (GPRW (0x09, 0x03))
@@ -6295,67 +6115,12 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
         If (Arg0)
         {
             \_SB.PCI0.LPCB.SPTS (Arg0)
-            \_SB.PCI0.PEX0.SPRT (Arg0)
-            \_SB.PCI0.PEX1.SPRT (Arg0)
-            \_SB.PCI0.PEX2.SPRT (Arg0)
-            \_SB.PCI0.PEX3.SPRT (Arg0)
-            \_SB.PCI0.PEX4.SPRT (Arg0)
             OPTS (Arg0)
         }
     }
 
     Method (WAK, 1, NotSerialized)
     {
-        If (\_SB.PCI0.PEX0.PMS)
-        {
-            \_SB.PCI0.PEX0.WPRT (Arg0)
-            Notify (\_SB.PCI0.PEX0, 0x02) // Device Wake
-        }
-        Else
-        {
-            \_SB.PCI0.PEX0.WPRT (Arg0)
-        }
-
-        If (\_SB.PCI0.PEX1.PMS)
-        {
-            \_SB.PCI0.PEX1.WPRT (Arg0)
-            Notify (\_SB.PCI0.PEX1, 0x02) // Device Wake
-        }
-        Else
-        {
-            \_SB.PCI0.PEX1.WPRT (Arg0)
-        }
-
-        If (\_SB.PCI0.PEX2.PMS)
-        {
-            \_SB.PCI0.PEX2.WPRT (Arg0)
-            Notify (\_SB.PCI0.PEX2, 0x02) // Device Wake
-        }
-        Else
-        {
-            \_SB.PCI0.PEX2.WPRT (Arg0)
-        }
-
-        If (\_SB.PCI0.PEX3.PMS)
-        {
-            \_SB.PCI0.PEX3.WPRT (Arg0)
-            Notify (\_SB.PCI0.PEX3, 0x02) // Device Wake
-        }
-        Else
-        {
-            \_SB.PCI0.PEX3.WPRT (Arg0)
-        }
-
-        If (\_SB.PCI0.PEX4.PMS)
-        {
-            \_SB.PCI0.PEX4.WPRT (Arg0)
-            Notify (\_SB.PCI0.PEX4, 0x02) // Device Wake
-        }
-        Else
-        {
-            \_SB.PCI0.PEX4.WPRT (Arg0)
-        }
-
         OWAK (Arg0)
     }
 }
