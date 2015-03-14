@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Sat Mar 14 16:38:03 2015
+ * Disassembly of DSDT.aml, Sat Mar 14 18:04:21 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x00005DE2 (24034)
+ *     Length           0x000057EC (22508)
  *     Revision         0x02
- *     Checksum         0x08
+ *     Checksum         0x5E
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -3609,6 +3609,45 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 {
                     Return (AR12) /* \_SB_.AR12 */
                 }
+
+                Device (APRT)
+                {
+                    Name (_ADR, Zero)  // _ADR: Address
+                    Name (_SUN, 0x001C0001)  // _SUN: Slot User Number
+                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+                    {
+                        Return (GPRW (0x09, 0x03))
+                    }
+
+                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    {
+                        If ((Arg2 == Zero))
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0x03                                             /* . */
+                            })
+                        }
+
+                        Return (Package (0x0A)
+                        {
+                            "built-in", 
+                            Buffer (One)
+                            {
+                                 0x00                                             /* . */
+                            }, 
+
+                            "device_type", 
+                            "AirPort", 
+                            "model", 
+                            "Broadcom BCM43225 802.11 a/b/g/n Wireless Network Controller", 
+                            "name", 
+                            "AirPort Extreme", 
+                            "compatible", 
+                            "pci14e4,43a0"
+                        })
+                    }
+                }
             }
 
             Device (PEX2)
@@ -3658,6 +3697,54 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
                 {
                     Return (AR13) /* \_SB_.AR13 */
+                }
+
+                Device (LAN0)
+                {
+                    Name (_ADR, Zero)  // _ADR: Address
+                    Name (_SUN, 0x001C0002)  // _SUN: Slot User Number
+                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+                    {
+                        Return (GPRW (0x09, 0x03))
+                    }
+
+                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    {
+                        If ((Arg2 == Zero))
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0x03                                             /* . */
+                            })
+                        }
+
+                        Return (Package (0x08)
+                        {
+                            "built-in", 
+                            Buffer (One)
+                            {
+                                 0x00                                             /* . */
+                            }, 
+
+                            "name", 
+                            Buffer (0x09)
+                            {
+                                "Ethernet"
+                            }, 
+
+                            "model", 
+                            Buffer (0x2B)
+                            {
+                                "Realtek RTL8103E PCI Express Fast Ethernet"
+                            }, 
+
+                            "device_type", 
+                            Buffer (0x09)
+                            {
+                                "Ethernet"
+                            }
+                        })
+                    }
                 }
             }
 
@@ -4468,407 +4555,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
     {
         Name (_HID, EisaId ("PNP0C01") /* System Board */)  // _HID: Hardware ID
         Name (_UID, One)  // _UID: Unique ID
-    }
-
-    OperationRegion (RCRB, SystemMemory, SRCB, SRCL)
-    Field (RCRB, ByteAcc, NoLock, Preserve)
-    {
-        Offset (0x3418), 
-        Offset (0x341A), 
-        PE0E,   1, 
-        PE1E,   1, 
-        PE2E,   1, 
-        PE3E,   1, 
-        PE4E,   1, 
-        PE5E,   1, 
-        PE6E,   1, 
-        PE7E,   1
-    }
-
-    Scope (_GPE)
-    {
-        Method (_L01, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
-        {
-            DBG8 += One
-            If (((PE0E == Zero) && \_SB.PCI0.PEX0.HPST))
-            {
-                Sleep (0x64)
-                If (\_SB.PCI0.PEX0.PDCX)
-                {
-                    \_SB.PCI0.PEX0.PDCX = One
-                    \_SB.PCI0.PEX0.HPST = One
-                    Notify (\_SB.PCI0.PEX0, Zero) // Bus Check
-                }
-                Else
-                {
-                    \_SB.PCI0.PEX0.HPST = One
-                }
-            }
-
-            If (((PE1E == Zero) && \_SB.PCI0.PEX1.HPST))
-            {
-                Sleep (0x64)
-                If (\_SB.PCI0.PEX1.PDCX)
-                {
-                    \_SB.PCI0.PEX1.PDCX = One
-                    \_SB.PCI0.PEX1.HPST = One
-                    Notify (\_SB.PCI0.PEX1, Zero) // Bus Check
-                }
-                Else
-                {
-                    \_SB.PCI0.PEX1.HPST = One
-                }
-            }
-
-            If (((PE2E == Zero) && \_SB.PCI0.PEX2.HPST))
-            {
-                Sleep (0x64)
-                If (\_SB.PCI0.PEX2.PDCX)
-                {
-                    \_SB.PCI0.PEX2.PDCX = One
-                    \_SB.PCI0.PEX2.HPST = One
-                    Notify (\_SB.PCI0.PEX2, Zero) // Bus Check
-                }
-                Else
-                {
-                    \_SB.PCI0.PEX2.HPST = One
-                }
-            }
-
-            If (((PE3E == Zero) && \_SB.PCI0.PEX3.HPST))
-            {
-                Sleep (0x64)
-                If (\_SB.PCI0.PEX3.PDCX)
-                {
-                    \_SB.PCI0.PEX3.PDCX = One
-                    \_SB.PCI0.PEX3.HPST = One
-                    Notify (\_SB.PCI0.PEX3, Zero) // Bus Check
-                }
-                Else
-                {
-                    \_SB.PCI0.PEX3.HPST = One
-                }
-            }
-
-            If (((PE4E == Zero) && \_SB.PCI0.PEX4.HPST))
-            {
-                Sleep (0x64)
-                If (\_SB.PCI0.PEX4.PDCX)
-                {
-                    \_SB.PCI0.PEX4.PDCX = One
-                    \_SB.PCI0.PEX4.HPST = One
-                    Notify (\_SB.PCI0.PEX4, Zero) // Bus Check
-                }
-                Else
-                {
-                    \_SB.PCI0.PEX4.HPST = One
-                }
-            }
-        }
-    }
-
-    Scope (_SB.PCI0.PEX0)
-    {
-        Name (_HPP, Package (0x04)  // _HPP: Hot Plug Parameters
-        {
-            0x08, 
-            0x40, 
-            One, 
-            Zero
-        })
-        OperationRegion (PXRG, PCI_Config, Zero, 0x0100)
-        Field (PXRG, AnyAcc, NoLock, WriteAsZeros)
-        {
-            Offset (0x5A), 
-                ,   3, 
-            PDCX,   1, 
-            Offset (0xD8), 
-                ,   30, 
-            HPEN,   1, 
-            PCEN,   1, 
-                ,   30, 
-            HPST,   1, 
-            PCST,   1
-        }
-
-        Device (PXSX)
-        {
-            Name (_ADR, Zero)  // _ADR: Address
-            Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-            {
-                Local0 = Zero
-                If ((P0HP == One))
-                {
-                    Local0 = One
-                }
-
-                Return (Local0)
-            }
-        }
-    }
-
-    Scope (_SB.PCI0.PEX1)
-    {
-        Name (_HPP, Package (0x04)  // _HPP: Hot Plug Parameters
-        {
-            0x08, 
-            0x40, 
-            One, 
-            Zero
-        })
-        OperationRegion (PXRG, PCI_Config, Zero, 0x0100)
-        Field (PXRG, AnyAcc, NoLock, Preserve)
-        {
-            Offset (0x5A), 
-                ,   3, 
-            PDCX,   1, 
-            Offset (0xD8), 
-                ,   30, 
-            HPEN,   1, 
-            PCEN,   1, 
-                ,   30, 
-            HPST,   1, 
-            PCST,   1
-        }
-
-        Device (APRT)
-        {
-            Name (_ADR, Zero)  // _ADR: Address
-            Name (_SUN, 0x001C0001)  // _SUN: Slot User Number
-            Name (_PRW, Package (0x02)  // _PRW: Power Resources for Wake
-            {
-                0x09, 
-                0x04
-            })
-            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-            {
-                If ((Arg2 == Zero))
-                {
-                    Return (Buffer (One)
-                    {
-                         0x03                                             /* . */
-                    })
-                }
-
-                Return (Package (0x0A)
-                {
-                    "built-in", 
-                    Buffer (One)
-                    {
-                         0x00                                             /* . */
-                    }, 
-
-                    "device_type", 
-                    "AirPort", 
-                    "model", 
-                    "Broadcom BCM43225 802.11 a/b/g/n Wireless Network Controller", 
-                    "name", 
-                    "AirPort Extreme", 
-                    "compatible", 
-                    "pci14e4,43a0"
-                })
-            }
-
-            Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-            {
-                Local0 = Zero
-                If ((P1HP == One))
-                {
-                    Local0 = One
-                }
-
-                Return (Local0)
-            }
-        }
-    }
-
-    Scope (_SB.PCI0.PEX2)
-    {
-        Name (_HPP, Package (0x04)  // _HPP: Hot Plug Parameters
-        {
-            0x08, 
-            0x40, 
-            One, 
-            Zero
-        })
-        OperationRegion (PXRG, PCI_Config, Zero, 0x0100)
-        Field (PXRG, AnyAcc, NoLock, Preserve)
-        {
-            Offset (0x5A), 
-                ,   3, 
-            PDCX,   1, 
-            Offset (0xD8), 
-                ,   30, 
-            HPEN,   1, 
-            PCEN,   1, 
-                ,   30, 
-            HPST,   1, 
-            PCST,   1
-        }
-
-        Device (LAN0)
-        {
-            Name (_ADR, Zero)  // _ADR: Address
-            Name (_SUN, 0x001C0002)  // _SUN: Slot User Number
-            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-            {
-                If ((Arg2 == Zero))
-                {
-                    Return (Buffer (One)
-                    {
-                         0x03                                             /* . */
-                    })
-                }
-
-                Return (Package (0x08)
-                {
-                    "built-in", 
-                    Buffer (One)
-                    {
-                         0x00                                             /* . */
-                    }, 
-
-                    "name", 
-                    Buffer (0x09)
-                    {
-                        "Ethernet"
-                    }, 
-
-                    "model", 
-                    Buffer (0x2B)
-                    {
-                        "Realtek RTL8103E PCI Express Fast Ethernet"
-                    }, 
-
-                    "device_type", 
-                    Buffer (0x09)
-                    {
-                        "Ethernet"
-                    }
-                })
-            }
-        }
-    }
-
-    Scope (_SB.PCI0.PEX3)
-    {
-        Name (_HPP, Package (0x04)  // _HPP: Hot Plug Parameters
-        {
-            0x08, 
-            0x40, 
-            One, 
-            Zero
-        })
-        OperationRegion (PXRG, PCI_Config, Zero, 0x0100)
-        Field (PXRG, AnyAcc, NoLock, Preserve)
-        {
-            Offset (0x5A), 
-                ,   3, 
-            PDCX,   1, 
-            Offset (0xD8), 
-                ,   30, 
-            HPEN,   1, 
-            PCEN,   1, 
-                ,   30, 
-            HPST,   1, 
-            PCST,   1
-        }
-
-        Device (PXSX)
-        {
-            Name (_ADR, Zero)  // _ADR: Address
-            Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-            {
-                Local0 = Zero
-                If ((P3HP == One))
-                {
-                    Local0 = One
-                }
-
-                Return (Local0)
-            }
-        }
-    }
-
-    Scope (_SB.PCI0.PEX4)
-    {
-        Name (_HPP, Package (0x04)  // _HPP: Hot Plug Parameters
-        {
-            0x08, 
-            0x40, 
-            One, 
-            Zero
-        })
-        OperationRegion (PXRG, PCI_Config, Zero, 0x0100)
-        Field (PXRG, AnyAcc, NoLock, Preserve)
-        {
-            Offset (0x5A), 
-                ,   3, 
-            PDCX,   1, 
-            Offset (0xD8), 
-                ,   30, 
-            HPEN,   1, 
-            PCEN,   1, 
-                ,   30, 
-            HPST,   1, 
-            PCST,   1
-        }
-
-        Device (PXSX)
-        {
-            Name (_ADR, Zero)  // _ADR: Address
-            Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-            {
-                Local0 = Zero
-                If ((P4HP == One))
-                {
-                    Local0 = One
-                }
-
-                Return (Local0)
-            }
-        }
-    }
-
-    Scope (_SB.PCI0)
-    {
-        Method (PEWK, 0, NotSerialized)
-        {
-            If ((PE4E == Zero))
-            {
-                If (^PEX4.PDCX)
-                {
-                    ^PEX4.PDCX = One
-                    ^PEX4.HPST = One
-                }
-                Else
-                {
-                    ^PEX4.HPST = One
-                }
-
-                Notify (PEX4, Zero) // Bus Check
-            }
-        }
-
-        Method (RLWK, 0, NotSerialized)
-        {
-            If ((PE2E == Zero))
-            {
-                If (^PEX2.PDCX)
-                {
-                    DBG8 = 0xEE
-                    ^PEX2.PDCX = One
-                    ^PEX2.HPST = One
-                }
-                Else
-                {
-                    DBG8 = 0xEF
-                    ^PEX2.HPST = One
-                }
-
-                Notify (PEX2, Zero) // Bus Check
-            }
-        }
     }
 
     Method (NEVT, 0, NotSerialized)
@@ -6670,8 +6356,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             \_SB.PCI0.PEX4.WPRT (Arg0)
         }
 
-        \_SB.PCI0.PEWK ()
-        \_SB.PCI0.RLWK ()
         OWAK (Arg0)
     }
 }
