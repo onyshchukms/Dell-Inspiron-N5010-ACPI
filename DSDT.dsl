@@ -5,13 +5,13 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of DSDT.aml, Sat Mar 14 10:53:46 2015
+ * Disassembly of DSDT.aml, Sat Mar 14 15:17:37 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
  *     Length           0x0000651A (25882)
  *     Revision         0x02
- *     Checksum         0x10
+ *     Checksum         0xB1
  *     OEM ID           "DELL  "
  *     OEM Table ID     "WN09   "
  *     OEM Revision     0x00005010 (20496)
@@ -1158,7 +1158,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                     Return (GPRW (0x09, 0x03))
                 }
 
-                Device (PEGP)
+                Device (GFX0)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_DOS, 1, NotSerialized)  // _DOS: Disable Output Switching
@@ -4060,22 +4060,22 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             Name (_STA, 0x0B)  // _STA: Status
             Method (_BCL, 0, NotSerialized)  // _BCL: Brightness Control Levels
             {
-                Return (^^PCI0.P0P1.PEGP.LCD._BCL ())
+                Return (^^PCI0.P0P1.GFX0.LCD._BCL ())
             }
 
             Method (_BCM, 1, NotSerialized)  // _BCM: Brightness Control Method
             {
-                ^^PCI0.P0P1.PEGP.LCD._BCM (Arg0)
+                ^^PCI0.P0P1.GFX0.LCD._BCM (Arg0)
             }
 
             Method (_BQC, 0, NotSerialized)  // _BQC: Brightness Query Current
             {
-                Return (^^PCI0.P0P1.PEGP.LCD._BQC ())
+                Return (^^PCI0.P0P1.GFX0.LCD._BQC ())
             }
 
             Method (_DOS, 1, NotSerialized)  // _DOS: Disable Output Switching
             {
-                ^^PCI0.P0P1.PEGP._DOS (Arg0)
+                ^^PCI0.P0P1.GFX0._DOS (Arg0)
             }
         }
 
@@ -5437,7 +5437,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
             T_0 = Local1
             If ((T_0 == One))
             {
-                Notify (\_SB.PCI0.P0P1.PEGP, 0x80) // Status Change
+                Notify (\_SB.PCI0.P0P1.GFX0, 0x80) // Status Change
             }
             Else
             {
@@ -5446,7 +5446,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "DELL  ", "WN09   ", 0x00005010)
                 {
                     If ((T_0 == 0x03))
                     {
-                        Notify (\_SB.PCI0.P0P1.PEGP, 0x80) // Status Change
+                        Notify (\_SB.PCI0.P0P1.GFX0, 0x80) // Status Change
                     }
                 }
             }
